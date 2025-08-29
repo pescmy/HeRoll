@@ -5,7 +5,7 @@ signal roll_finished(result: int)
 @export var sides: int = 6
 @export var flicker_count: int = 10
 @export var flicker_delay: float = 0.05  # seconds between flickers
-#test
+
 var rolling: bool = false
 var flickers_done: int = 0
 var final_result: int = 1
