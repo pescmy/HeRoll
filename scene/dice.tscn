@@ -1,0 +1,98 @@
+[gd_scene load_steps=12 format=3 uid="uid://cr58rc6ybd75o"]
+
+[ext_resource type="Texture2D" uid="uid://buvjibgxcmm0a" path="res://art/icons/iconsDefault 64.png" id="1_jktb0"]
+[ext_resource type="Script" uid="uid://cewpxfhoc3la4" path="res://scripts/dice_container.gd" id="2_1djgf"]
+[ext_resource type="Script" uid="uid://dcbul4pjyxl4d" path="res://scripts/die.gd" id="3_1djgf"]
+[ext_resource type="Script" uid="uid://bk4mxouibl0s7" path="res://scripts/roll_dice.gd" id="4_fkkh0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gblyi"]
+atlas = ExtResource("1_jktb0")
+region = Rect2(1280, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gkhvf"]
+atlas = ExtResource("1_jktb0")
+region = Rect2(1216, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aiwfo"]
+atlas = ExtResource("1_jktb0")
+region = Rect2(1152, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i30l1"]
+atlas = ExtResource("1_jktb0")
+region = Rect2(1088, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pbch"]
+atlas = ExtResource("1_jktb0")
+region = Rect2(1024, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d20kh"]
+atlas = ExtResource("1_jktb0")
+region = Rect2(960, 192, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cxn0f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gblyi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gkhvf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aiwfo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i30l1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pbch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d20kh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Dice" type="Node2D"]
+
+[node name="DiceContainer" type="Node2D" parent="."]
+script = ExtResource("2_1djgf")
+
+[node name="Die1" type="AnimatedSprite2D" parent="DiceContainer"]
+unique_name_in_owner = true
+position = Vector2(-100, 0)
+sprite_frames = SubResource("SpriteFrames_cxn0f")
+frame_progress = 0.366123
+script = ExtResource("3_1djgf")
+
+[node name="Die2" type="AnimatedSprite2D" parent="DiceContainer"]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_cxn0f")
+frame_progress = 0.366123
+script = ExtResource("3_1djgf")
+
+[node name="Die3" type="AnimatedSprite2D" parent="DiceContainer"]
+unique_name_in_owner = true
+position = Vector2(100, 0)
+sprite_frames = SubResource("SpriteFrames_cxn0f")
+frame_progress = 0.366123
+script = ExtResource("3_1djgf")
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -114.0
+offset_top = 50.0
+offset_right = 114.0
+offset_bottom = 99.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Roll Dice"
+script = ExtResource("4_fkkh0")
