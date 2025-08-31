@@ -1,3 +1,4 @@
+class_name DiceContainer
 extends Node2D
 
 var dice_nodes := []

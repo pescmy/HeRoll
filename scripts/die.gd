@@ -1,3 +1,4 @@
+class_name Die
 extends AnimatedSprite2D
 
 signal roll_finished(result: int)

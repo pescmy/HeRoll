@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="HeRoll Inspired"
-run/main_scene="uid://baqa7qxmhj6x1"
+run/main_scene="uid://cicxa224rb1ua"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Data="*res://data_structures/data.gd"
 
 [rendering]
 

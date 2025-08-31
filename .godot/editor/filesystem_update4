@@ -1,2 +1,9 @@
+res://scene/board.tscn
+res://scripts/game_controller.gd
+res://scripts/player.gd
 res://scene/dice.tscn
+res://scene/player.tscn
+res://scene/game_controller.tscn
+res://data_structures/data.tscn
 res://scripts/die.gd
+res://scene/game.tscn

@@ -1,11 +1,11 @@
 Node2D
+Sprite2D
+AnimatedSprite2D
 Panel
 Button
 HBoxContainer
 PanelContainer
 Control
 Container
-AnimatedSprite2D
-Sprite2D
 TileMapLayer
 TileMap
