@@ -396,10 +396,8 @@ texture = ExtResource("2_xlg7c")
 [sub_resource type="TileSet" id="TileSet_rl6p6"]
 sources/0 = SubResource("TileSetAtlasSource_32fhn")
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("player", "dice_instance")]
+[node name="Game" type="Node2D"]
 script = ExtResource("1_p1ry8")
-player = NodePath("Player")
-dice_instance = NodePath("Dice")
 
 [node name="Dice" parent="." instance=ExtResource("3_qpk70")]
 position = Vector2(596, 472)

@@ -1,24 +1,44 @@
 extends Node2D
 
-@export var move_speed: float = 200.0
+signal movement_finished
 
-var target_position: Vector2
-var moving: bool = false
+@export var speed := 0.2 # seconds per step
+var board_positions: Array[Vector2] = []
+var player_index := 0
+var move_queue: Array[int] = []
 
-func _ready() -> void:
-	target_position = global_position
+func set_board_positions(positions: Array[Vector2]) -> void:
+	board_positions = positions
+	player_index = 0
+	if not board_positions.is_empty():
+		position = board_positions[0]
+		print("Player start position: ", position) # ✅ Debug
+	else:
+		print("⚠️ No board positions received!")
 
-func _process(delta: float) -> void:
-	if moving:
-		var direction = (target_position - global_position).normalized()
-		var distance = move_speed * delta
 
-		if global_position.distance_to(target_position) <= distance:
-			global_position = target_position
-			moving = false
-		else:
-			global_position += direction * distance
+# Called by GameController
+func move_steps(steps: int) -> void:
+	print("➡️ Moving steps: ", steps)
+	if board_positions.is_empty():
+		return
+	move_queue.clear()
 
-func move_to(tile_coords: Vector2i, board: TileMap) -> void:
-	target_position = board.map_to_world(tile_coords) + board.tile_set.tile_size / 2
-	moving = true
+	for i in range(steps):
+		player_index = (player_index + 1) % board_positions.size()
+		move_queue.append(player_index)
+
+	_process_next_move()
+
+# Moves one step at a time with Tween
+func _process_next_move() -> void:
+	if move_queue.is_empty():
+		emit_signal("movement_finished")
+		return
+
+	var next_index = move_queue.pop_front()
+	var target_pos = board_positions[next_index]
+
+	var tween = create_tween()
+	tween.tween_property(self, "position", target_pos, speed)
+	tween.tween_callback(Callable(self, "_process_next_move"))

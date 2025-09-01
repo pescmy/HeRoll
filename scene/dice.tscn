@@ -62,20 +62,14 @@ script = ExtResource("2_1djgf")
 
 [node name="Die1" type="AnimatedSprite2D" parent="DiceContainer"]
 unique_name_in_owner = true
-position = Vector2(-100, 0)
+position = Vector2(-49, 0)
 sprite_frames = SubResource("SpriteFrames_cxn0f")
 frame_progress = 0.366123
 script = ExtResource("3_1djgf")
 
 [node name="Die2" type="AnimatedSprite2D" parent="DiceContainer"]
 unique_name_in_owner = true
-sprite_frames = SubResource("SpriteFrames_cxn0f")
-frame_progress = 0.366123
-script = ExtResource("3_1djgf")
-
-[node name="Die3" type="AnimatedSprite2D" parent="DiceContainer"]
-unique_name_in_owner = true
-position = Vector2(100, 0)
+position = Vector2(51, 0)
 sprite_frames = SubResource("SpriteFrames_cxn0f")
 frame_progress = 0.366123
 script = ExtResource("3_1djgf")

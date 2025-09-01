@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1756676266
+::res://::1756761137
 icon.svg::CompressedTexture2D/CompressedTexture2D::131415617490550417::1756474501::1756475300::1::::<><><>0<>0<>4e43562cd0cd55e1632ed49093856020<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 README.md::TextFile/TextFile::-1::1756511688::0::1::::<><><>0<>0<><>::
 tile_set.png::CompressedTexture2D/CompressedTexture2D::6583167658365660709::1756483021::1756483022::1::::<><><>0<>0<>53019dc744c195dfd5ce6de8fd8a17c6<>res://.godot/imported/tile_set.png-0c317f5c3892f579c700f587287d3095.ctex::
@@ -11,19 +11,20 @@ iconsDouble 128.png::CompressedTexture2D/CompressedTexture2D::352629040656415955
 pixel_chess_board_b1_pal2.png::CompressedTexture2D/CompressedTexture2D::3682156096009974222::1756498612::1756498613::1::::<><><>0<>0<>7fcb6e5979798e463bf68e168c770914<>res://.godot/imported/pixel_chess_board_b1_pal2.png-c3f7ff584e832065b667df018d6660ec.ctex::
 ::res://art/tile_sets/::1756508199
 white_icons.tres::TileSet/TileSet::4524510564513296798::1756498856::0::1::::<><><>0<>0<><>::uid://buvjibgxcmm0a::::res://art/icons/iconsDefault 64.png
-::res://data_structures/::1756598092
-data.gd::GDScript::8919867711946902342::1756598092::0::1::::<>Node<><>0<>0<><>::
-data.tscn::PackedScene::853852555839154838::1756598092::0::1::::<><><>0<>0<><>::uid://d0c36hhlropkw::::res://data_structures/data.gd
-::res://scene/::1756598092
-board.tscn::PackedScene::2419508749622087836::1756598092::0::1::::<><><>0<>0<><>::uid://dsj5yh7nn6xtr::::res://scripts/game.gd<>uid://bspwtqkrbyiyo::::res://art/misc/pixel_chess_board_b1_pal2.png<>uid://cr58rc6ybd75o::::res://scene/dice.tscn<>uid://dg3xwl62blm1b::::res://scene/player.tscn<>uid://b6ct1ivcyfumu::::res://scene/game_controller.tscn<>uid://mfu3d3lctpni::::res://data_structures/data.tscn
-dice.tscn::PackedScene::6030017215139802098::1756598092::0::1::::<><><>0<>0<><>::uid://buvjibgxcmm0a::::res://art/icons/iconsDefault 64.png<>uid://cewpxfhoc3la4::::res://scripts/dice_container.gd<>uid://dcbul4pjyxl4d::::res://scripts/die.gd<>uid://bk4mxouibl0s7::::res://scripts/roll_dice.gd
-game_controller.tscn::PackedScene::4567604098235171492::1756598092::0::1::::<><><>0<>0<><>::uid://cxdocccsa4rab::::res://scripts/game_controller.gd
-player.tscn::PackedScene::7639634095195035949::1756598092::0::1::::<><><>0<>0<><>::uid://b4wnp2f17gwn::::res://icon.svg<>uid://gvg10lcmr0kq::::res://scripts/player.gd
-::res://scripts/::1756598027
-dice_container.gd::GDScript::5099965154749219785::1756595277::0::1::::DiceContainer<>Node2D<><>0<>0<><>::
-die.gd::GDScript::7302939646488839841::1756595277::0::1::::Die<>AnimatedSprite2D<><>0<>0<><>::
-game.gd::GDScript::8443105422893606363::1756597897::0::1::::<>Node<><>0<>0<><>::
-game_controller.gd::GDScript::6394231622764972781::1756598027::0::1::::<>Node<><>0<>0<><>::
-player.gd::GDScript::464897057445782160::1756597997::0::1::::<>Node2D<><>0<>0<><>::
+::res://data_structures/::1756724401
+data.gd::GDScript/GDScript::8919867711946902342::1756598092::0::1::::<>Node<><>0<>0<><>::
+data.tscn::PackedScene::853852555839154838::1756724401::0::1::::<><><>0<>0<><>::uid://d0c36hhlropkw::::res://data_structures/data.gd
+::res://scene/::1756724401
+board.tscn::PackedScene::2419508749622087836::1756724401::0::1::::<><><>0<>0<><>::uid://bspwtqkrbyiyo::::res://art/misc/pixel_chess_board_b1_pal2.png
+dice.tscn::PackedScene::6030017215139802098::1756724401::0::1::::<><><>0<>0<><>::uid://buvjibgxcmm0a::::res://art/icons/iconsDefault 64.png<>uid://cewpxfhoc3la4::::res://scripts/dice_container.gd<>uid://dcbul4pjyxl4d::::res://scripts/die.gd<>uid://bk4mxouibl0s7::::res://scripts/roll_dice.gd
+game.tscn::PackedScene::5339878824012797576::1756724401::0::1::::<><><>0<>0<><>::uid://cxdocccsa4rab::::res://scripts/game_controller.gd<>uid://bspwtqkrbyiyo::::res://art/misc/pixel_chess_board_b1_pal2.png<>uid://cr58rc6ybd75o::::res://scene/dice.tscn<>uid://dg3xwl62blm1b::::res://scene/player.tscn<>uid://gvg10lcmr0kq::::res://scripts/player.gd
+game_controller.tscn::PackedScene::4567604098235171492::1756724401::0::1::::<><><>0<>0<><>::uid://cxdocccsa4rab::::res://scripts/game_controller.gd
+player.tscn::PackedScene::7639634095195035949::1756724401::0::1::::<><><>0<>0<><>::uid://b4wnp2f17gwn::::res://icon.svg<>uid://gvg10lcmr0kq::::res://scripts/player.gd
+::res://scripts/::1756724346
+dice_container.gd::GDScript::5099965154749219785::1756723462::0::1::::DiceContainer<>Node2D<><>0<>0<><>::
+die.gd::GDScript::7302939646488839841::1756677907::0::1::::Die<>AnimatedSprite2D<><>0<>0<><>::
+game.gd::GDScript/GDScript::8443105422893606363::1756597897::0::1::::<>Node<><>0<>0<><>::
+game_controller.gd::GDScript::6394231622764972781::1756724346::0::1::::<>Node2D<><>0<>0<><>::
+player.gd::GDScript::464897057445782160::1756676340::0::1::::<>Node2D<><>0<>0<><>::
 roll_dice.gd::GDScript/GDScript::3148946518702440528::1756508340::0::1::::<>Button<><>0<>0<><>::
 ::res://sprites/::1756595149

@@ -5,11 +5,11 @@ var dice_nodes := []
 var dice_results := []
 var rolling := false
 
-@export var roll_duration: float = 1.5
+@export var roll_duration: float = 1.0
 
 func _ready():
 	randomize()
-	dice_nodes = [$Die1, $Die2, $Die3]  # manually assign dice nodes
+	dice_nodes = [$Die1, $Die2]  # manually assign dice nodes
 
 func roll_all_dice():
 	if rolling:
