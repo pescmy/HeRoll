@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dg3xwl62blm1b"]
+[gd_scene load_steps=3 format=3 uid="uid://dg3xwl62blm1b"]
 
 [ext_resource type="Texture2D" uid="uid://b4wnp2f17gwn" path="res://icon.svg" id="1_hjaqi"]
 [ext_resource type="Script" uid="uid://gvg10lcmr0kq" path="res://scripts/player_movement.gd" id="2_fvtld"]
-[ext_resource type="Script" uid="uid://b00w50rkvep37" path="res://scripts/player_stats.gd" id="3_fvtld"]
-[ext_resource type="Script" uid="uid://dcs1it57girv3" path="res://scripts/player_equipment.gd" id="4_ct4mp"]
 
 [node name="Player" type="Node2D"]
 
@@ -13,7 +11,5 @@ texture = ExtResource("1_hjaqi")
 script = ExtResource("2_fvtld")
 
 [node name="PlayerStats" type="Node2D" parent="."]
-script = ExtResource("3_fvtld")
 
 [node name="PlayerEquipment" type="Node2D" parent="."]
-script = ExtResource("4_ct4mp")

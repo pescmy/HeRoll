@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bspwtqkrbyiyo" path="res://art/misc/pixel_chess_board_b1_pal2.png" id="2_xlg7c"]
 [ext_resource type="PackedScene" uid="uid://cr58rc6ybd75o" path="res://scene/dice.tscn" id="3_qpk70"]
 [ext_resource type="PackedScene" uid="uid://dg3xwl62blm1b" path="res://scene/player.tscn" id="4_ll5lq"]
-[ext_resource type="Script" uid="uid://gvg10lcmr0kq" path="res://scripts/player.gd" id="5_17rxn"]
+[ext_resource type="Script" uid="uid://gvg10lcmr0kq" path="res://scripts/player_movement.gd" id="5_17rxn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_32fhn"]
 texture = ExtResource("2_xlg7c")
