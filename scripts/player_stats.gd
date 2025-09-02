@@ -1,54 +1,37 @@
 extends Node
 class_name PlayerStats
 
-# --- Base stats ---
-@export var max_health: int = 100
-var current_health: int = max_health
-@export var strength: int = 10
-@export var defense: int = 5
-@export var speed: int = 5
+# --- Base stats (without equipment) ---
+@export var base_health: int = 100
+@export var base_strength: int = 10
+@export var base_defense: int = 5
+@export var base_speed: int = 5
 
-# --- Equipment modifiers (optional) ---
-var weapon_bonus_strength: int = 0
-var armor_bonus_defense: int = 0
+# --- Final stats (calculated) ---
+var health: int
+var strength: int
+var defense: int
+var speed: int
 
-# --- Initialization ---
-func _ready() -> void:
-	current_health = max_health
+func calculate_final_stats(equipment: Node) -> void:
+	# Reset to base stats
+	health = base_health
+	strength = base_strength
+	defense = base_defense
+	speed = base_speed
 
-# --- Health functions ---
-func take_damage(amount: int) -> void:
-	var damage_taken = max(amount - (defense + armor_bonus_defense), 0)
-	current_health = max(current_health - damage_taken, 0)
-	print("Damage taken:", damage_taken, "Current health:", current_health)
+	# Add bonuses from equipment if present
+	if equipment.equipped_weapon:
+		apply_item(equipment.equipped_weapon)
+	if equipment.equipped_armor:
+		apply_item(equipment.equipped_armor)
+	if equipment.equipped_accessory:
+		apply_item(equipment.equipped_accessory)
 
-func heal(amount: int) -> void:
-	current_health = min(current_health + amount, max_health)
-	print("Healed:", amount, "Current health:", current_health)
+	print("Final stats => Health: %d, Str: %d, Def: %d, Spd: %d" % [health, strength, defense, speed])
 
-func is_alive() -> bool:
-	return current_health > 0
-
-# --- Combat functions ---
-func attack_roll() -> int:
-	# Simple attack roll: strength + weapon bonus + dice roll (1-6)
-	return strength + weapon_bonus_strength + randi_range(1, 6)
-
-func get_total_defense() -> int:
-	return defense + armor_bonus_defense
-
-# --- Equipment functions ---
-func equip_weapon(strength_bonus: int) -> void:
-	weapon_bonus_strength = strength_bonus
-	print("Weapon equipped. Strength bonus:", weapon_bonus_strength)
-
-func equip_armor(defense_bonus: int) -> void:
-	armor_bonus_defense = defense_bonus
-	print("Armor equipped. Defense bonus:", armor_bonus_defense)
-
-# --- Utility / debug ---
-func print_stats() -> void:
-	print("Health:", current_health, "/", max_health,
-		  " Strength:", strength + weapon_bonus_strength,
-		  " Defense:", defense + armor_bonus_defense,
-		  " Speed:", speed)
+func apply_item(item: Item) -> void:
+	health += item.health_bonus
+	strength += item.strength_bonus
+	defense += item.defense_bonus
+	speed += item.speed_bonus

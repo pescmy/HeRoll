@@ -4,7 +4,7 @@ class_name PlayerMovement
 # --- Board settings ---
 @export var tile_size: int = 32
 @export var grid_size: int = 10
-@export var board_start: Vector2 = Vector2(0, 0) # top-left corner
+@export var board_start: Vector2 = Vector2(447, 108) # top-left corner
 
 # --- Movement settings ---
 var player_index: int = 0

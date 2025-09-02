@@ -1,47 +1,74 @@
 extends Node
 class_name PlayerEquipment
 
-@onready var stats: PlayerStats = null
+signal equipment_changed
 
-# --- Equipment slots ---
-var weapon: Dictionary = {}   # Example: {"name": "Sword", "strength_bonus": 5}
-var armor: Dictionary = {}    # Example: {"name": "Leather", "defense_bonus": 3}
+@export var equipped_weapon: Item
+@export var equipped_armor: Item
+@export var equipped_accessory: Item
 
 func _ready() -> void:
-	# Automatically find PlayerStats if not assigned
-	if stats == null:
-		stats = get_parent().get_node_or_null("PlayerStats")
-	if stats == null:
-		push_error("PlayerStats not found! Please assign manually.")
+	print("[Equipment] Ready. Weapon=%s Armor=%s Accessory=%s"
+		% [_name_or_none(equipped_weapon), _name_or_none(equipped_armor), _name_or_none(equipped_accessory)])
 
-# --- Equip functions ---
-func equip_weapon(item: Dictionary) -> void:
-	weapon = item
-	if stats != null:
-		var bonus = item.get("strength_bonus", 0)
-		stats.equip_weapon(bonus)
-		print("Equipped weapon:", item.get("name", "Unknown"), "Bonus:", bonus)
+func equip(item: Item) -> void:
+	if item == null:
+		return
+	match item.type:
+		"weapon":
+			equipped_weapon = item
+		"armor":
+			equipped_armor = item
+		"accessory":
+			equipped_accessory = item
+	print("[Equipment] Equipped %s (%s)" % [item.name, item.type])
+	emit_signal("equipment_changed")
 
-func equip_armor(item: Dictionary) -> void:
-	armor = item
-	if stats != null:
-		var bonus = item.get("defense_bonus", 0)
-		stats.equip_armor(bonus)
-		print("Equipped armor:", item.get("name", "Unknown"), "Bonus:", bonus)
+func unequip(slot: String) -> void:
+	match slot:
+		"weapon":
+			equipped_weapon = null
+		"armor":
+			equipped_armor = null
+		"accessory":
+			equipped_accessory = null
+	print("[Equipment] Unequipped %s" % slot)
+	emit_signal("equipment_changed")
 
-# --- Unequip functions ---
-func unequip_weapon() -> void:
-	weapon = {}
-	if stats != null:
-		stats.equip_weapon(0)
-	print("Weapon unequipped")
+func get_total_bonuses() -> Dictionary:
+	var totals := {
+		"health": 0,
+		"strength": 0,
+		"defense": 0,
+		"speed": 0,
+	}
+	for item in _iter_equipped():
+		totals.health += item.health_bonus
+		totals.strength += item.strength_bonus
+		totals.defense += item.defense_bonus
+		totals.speed += item.speed_bonus
+	return totals
 
-func unequip_armor() -> void:
-	armor = {}
-	if stats != null:
-		stats.equip_armor(0)
-	print("Armor unequipped")
+func get_equipment_summary() -> String:
+	var s := ""
+	s += "Weapon: %s\n" % _name_or_none(equipped_weapon)
+	s += "Armor: %s\n" % _name_or_none(equipped_armor)
+	s += "Accessory: %s\n" % _name_or_none(equipped_accessory)
+	return s
 
-# --- Utility functions ---
 func print_equipment() -> void:
-	print("Weapon:", weapon.get("name", "None"), "Armor:", armor.get("name", "None"))
+	print(get_equipment_summary())
+
+# --- helpers ---
+func _iter_equipped() -> Array:
+	var out: Array = []
+	if equipped_weapon != null:
+		out.append(equipped_weapon)
+	if equipped_armor != null:
+		out.append(equipped_armor)
+	if equipped_accessory != null:
+		out.append(equipped_accessory)
+	return out
+
+func _name_or_none(it: Item) -> String:
+	return it.name if it != null else "None"

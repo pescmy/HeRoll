@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://dtsjihh20o3a7"]
+
+[ext_resource type="Script" uid="uid://cv2xqeytjiy41" path="res://scripts/items.gd" id="1_h5i3d"]
+
+[resource]
+script = ExtResource("1_h5i3d")
+name = "Leather Armour"
+type = "armour"
+health_bonus = 0
+strength_bonus = 0
+defense_bonus = 5
+speed_bonus = 0
+metadata/_custom_type_script = "uid://cv2xqeytjiy41"
