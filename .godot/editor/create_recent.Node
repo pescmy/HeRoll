@@ -1,5 +1,7 @@
-Node2D
 Sprite2D
+Node
+Node2D
+Area2D
 AnimatedSprite2D
 Panel
 Button

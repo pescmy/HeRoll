@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3 uid="uid://cbyy6nl64i2d6"]
+
+[ext_resource type="Script" uid="uid://bp4bb0bp1mktu" path="res://scripts/enemy_data.gd" id="1_j13lc"]
+
+[resource]
+script = ExtResource("1_j13lc")
+name = "Slim"
+max_health = 15
+strength = 3
+defense = 1
+speed = 1
+reward_gold = 5
+reward_xp = 10
+metadata/_custom_type_script = "uid://bp4bb0bp1mktu"

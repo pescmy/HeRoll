@@ -12,3 +12,11 @@ res://data_structures/data.tscn
 res://items/accessory/boots.tres
 res://scripts/player.gd
 res://scripts/player_movement.gd
+res://scripts/game_controller.gd
+res://scene/enemy.tscn
+res://scripts/enemy_data.gd
+res://scripts/enemy.gd
+res://scene/enemy_stats.gd
+res://enemies/slime.tres
+res://enemies/goblin.tres
+res://enemies/skeleton.tres

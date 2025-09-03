@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3 uid="uid://c6cmuhh63p58u"]
+
+[ext_resource type="Script" uid="uid://bp4bb0bp1mktu" path="res://scripts/enemy_data.gd" id="1_6fwgm"]
+
+[resource]
+script = ExtResource("1_6fwgm")
+name = "Skeleton"
+max_health = 25
+strength = 6
+defense = 3
+speed = 3
+reward_gold = 7
+reward_xp = 12
+metadata/_custom_type_script = "uid://bp4bb0bp1mktu"
