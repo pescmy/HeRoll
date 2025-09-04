@@ -1,15 +1,20 @@
-extends Node
+extends Node2D
+
+@onready var game_controller = $GameController
+@onready var player = $Player
+@onready var dice = $Dice
+@onready var board = $Board
 
 func _ready() -> void:
-	# Wait until all nodes are fully in the scene tree
-	call_deferred("_assign_references_and_connect")
+	print("Game scene ready!")
+	# You can do any setup here if needed
+	# For example: set starting player stats, equipment, etc.
+	if player.has_node("PlayerStats"):
+		var stats = player.get_node("PlayerStats")
+		print("Player starting HP: %d" % stats.current_health)
 
-func _assign_references_and_connect() -> void:
-	# Assign references to the singleton
-	Data.player = get_node("Player")
-	Data.board = get_node("Board")
-	Data.dice = get_node("Dice")
-
-	# Connect signals
-	Data.dice.connect("dice_rolled", Callable(self, "_on_dice_rolled"))
-	Data.player.connect("movement_finished", Callable(self, "_on_player_finished_moving"))
+func _process(delta: float) -> void:
+	# Temporary test: press Enter to roll dice
+	if Input.is_action_just_pressed("ui_accept"):
+		if game_controller.has_method("roll_dice"):
+			game_controller.roll_dice()
