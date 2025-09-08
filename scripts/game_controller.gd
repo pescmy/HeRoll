@@ -1,32 +1,27 @@
-extends Node
+extends Node2D
 
-@onready var player_movement = $Player/PlayerMovement
-@onready var dice = $Dice
+@onready var board: TileMapLayer = $Board
+@onready var player: Node2D = $Player
+@onready var dice: DiceContainer = $DiceContainer
 
-var pending_rolls: int = 0
-var roll_total: int = 0
+var current_tile: Vector2i = Vector2i(0, 0)
 
-func _ready():
-	# Set up the board
-	player_movement.set_board_positions()
+func _ready() -> void:
+	if dice:
+		dice.dice_rolled.connect(_on_dice_rolled)
+	else:
+		push_error("❌ DiceContainer not found")
 
-	# Connect dice signals
-	for die in dice.get_node("DiceContainer").get_children():
-		if die.has_signal("roll_finished"):
-			die.roll_finished.connect(_on_die_finished)
+	_move_player_to_tile(current_tile)
 
-func roll_dice(num_dice: int = 2) -> void:
-	pending_rolls = num_dice
-	roll_total = 0
+func _on_dice_rolled(total: int, results: Array) -> void:
+	print("🎲 Rolled total:", total, "with breakdown:", results)
+	current_tile.x += total   # simple test: move right
+	_move_player_to_tile(current_tile)
 
-	for die in dice.get_node("DiceContainer").get_children():
-		die.roll_die()
-
-func _on_die_finished(result: int) -> void:
-	pending_rolls -= 1
-	roll_total += result
-
-	if pending_rolls <= 0:
-		print("Total dice:", roll_total)
-		player_movement.move_steps(roll_total)
-		roll_total = 0
+func _move_player_to_tile(tile_coords: Vector2i) -> void:
+	if not board:
+		return
+	var world_pos = board.map_to_local(tile_coords)
+	player.position = world_pos
+	print("👣 Player moved to:", tile_coords, "at", world_pos)
