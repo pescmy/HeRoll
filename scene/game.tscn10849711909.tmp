@@ -19,8 +19,3 @@ position = Vector2(596, 472)
 position = Vector2(591, 252)
 
 [node name="RollButton" type="Button" parent="."]
-offset_left = 507.0
-offset_top = 517.0
-offset_right = 687.0
-offset_bottom = 577.0
-text = "Roll Dice"

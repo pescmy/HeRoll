@@ -3,38 +3,42 @@ extends Node2D
 
 signal dice_rolled(total: int, results: Array)
 
-var dice_nodes := []
-var dice_results := []
-var rolling := false
-
-@export var roll_duration: float = 1.0
+# Array of Die nodes
+var dice: Array[Die] = []
+var results: Array[int] = []
+var remaining: int = 0
 
 func _ready() -> void:
-	randomize()
-	dice_nodes = [$Die1, $Die2]  # add more if needed
+	# Collect all Die children automatically
+	dice.clear()
+	for child in get_children():
+		if child is Die:
+			dice.append(child)
 
 func roll_all_dice() -> void:
-	if rolling:
+	if dice.size() == 0:
+		push_error("❌ No dice found in DiceContainer")
 		return
-	rolling = true
-	dice_results.clear()
 
-	for die in dice_nodes:
-		if not die.roll_finished.is_connected(_on_die_finished):
-			die.roll_finished.connect(_on_die_finished)
-		die.roll_die(roll_duration)
+	results.clear()
+	remaining = dice.size()
 
-func _on_die_finished(result: int) -> void:
-	dice_results.append(result)
-	if dice_results.size() == dice_nodes.size():
-		var total := 0
-		for val in dice_results:
-			total += val
+	for die in dice:
+		# Create callable to this method
+		var c: Callable = Callable(self, "_on_die_roll_finished")
+		
+		# Disconnect previous connections if connected
+		if die.is_connected("roll_finished", c):
+			die.disconnect("roll_finished", c)
 
-		print("🎲 Dice results:", dice_results, "Total:", total)
-		emit_signal("dice_rolled", total, dice_results)
+		# Connect signal
+		die.roll_finished.connect(c)
+		die.roll_die()
 
-		rolling = false
-		for die in dice_nodes:
-			if die.roll_finished.is_connected(_on_die_finished):
-				die.roll_finished.disconnect(_on_die_finished)
+func _on_die_roll_finished(result: int) -> void:
+	results.append(result)
+	remaining -= 1
+	if remaining <= 0:
+		# Sum all results
+		var total: int = results.reduce(func(a, b): return a + b)
+		emit_signal("dice_rolled", total, results)

@@ -1,0 +1,8 @@
+res://scene/game.tscn
+res://items/armour/leather_armour.tres
+res://scripts/dice_container.gd
+res://scene/board.tscn
+res://scene/enemy.tscn
+res://scene/dice.tscn
+res://scripts/game_controller.gd
+res://scene/player.tscn

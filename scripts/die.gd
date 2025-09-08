@@ -16,7 +16,7 @@ func roll_die(duration: float = 1.5) -> void:
 		return
 	rolling = true
 	flickers_done = 0
-	final_result = randi_range(1, sides)
+	final_result = randi() % sides + 1
 	animate_roll(duration)
 
 func animate_roll(duration: float) -> void:
@@ -27,8 +27,7 @@ func animate_roll(duration: float) -> void:
 
 	timer.timeout.connect(func() -> void:
 		flickers_done += 1
-		frame = randi_range(0, sides - 1)
-
+		frame = randi() % sides
 		if flickers_done >= flicker_count:
 			timer.stop()
 			timer.queue_free()

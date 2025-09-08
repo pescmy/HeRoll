@@ -1,15 +1,14 @@
+Node2D
+Button
 RichTextLabel
 Label
-Node2D
 Node
 Sprite2D
 Area2D
 AnimatedSprite2D
 Panel
-Button
 HBoxContainer
 PanelContainer
 Control
 Container
 TileMapLayer
-TileMap

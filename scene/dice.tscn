@@ -1,9 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://cr58rc6ybd75o"]
+[gd_scene load_steps=11 format=3 uid="uid://cr58rc6ybd75o"]
 
 [ext_resource type="Texture2D" uid="uid://buvjibgxcmm0a" path="res://art/icons/iconsDefault 64.png" id="1_jktb0"]
 [ext_resource type="Script" uid="uid://cewpxfhoc3la4" path="res://scripts/dice_container.gd" id="2_1djgf"]
 [ext_resource type="Script" uid="uid://dcbul4pjyxl4d" path="res://scripts/die.gd" id="3_1djgf"]
-[ext_resource type="Script" uid="uid://bk4mxouibl0s7" path="res://scripts/roll_dice.gd" id="4_fkkh0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gblyi"]
 atlas = ExtResource("1_jktb0")
@@ -55,38 +54,19 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Dice" type="Node2D"]
-
-[node name="DiceContainer" type="Node2D" parent="."]
+[node name="DiceContainer" type="Node2D"]
 script = ExtResource("2_1djgf")
 
-[node name="Die1" type="AnimatedSprite2D" parent="DiceContainer"]
+[node name="Die1" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(-49, 0)
 sprite_frames = SubResource("SpriteFrames_cxn0f")
 frame_progress = 0.366123
 script = ExtResource("3_1djgf")
 
-[node name="Die2" type="AnimatedSprite2D" parent="DiceContainer"]
+[node name="Die2" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(51, 0)
 sprite_frames = SubResource("SpriteFrames_cxn0f")
 frame_progress = 0.366123
 script = ExtResource("3_1djgf")
-
-[node name="Button" type="Button" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -114.0
-offset_top = 50.0
-offset_right = 114.0
-offset_bottom = 99.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-text = "Roll Dice"
-script = ExtResource("4_fkkh0")
