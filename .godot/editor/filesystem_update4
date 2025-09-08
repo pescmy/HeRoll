@@ -6,3 +6,4 @@ res://scene/enemy.tscn
 res://scene/dice.tscn
 res://scripts/game_controller.gd
 res://scene/player.tscn
+res://scripts/player_movement.gd
