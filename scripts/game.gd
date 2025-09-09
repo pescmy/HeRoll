@@ -1,9 +1,9 @@
 extends Node2D
 
-@onready var game_controller = $GameController
-@onready var player = $Player
-@onready var dice = $Dice
-@onready var board = $Board
+@onready var game_controller: Node2D = $GameController
+@onready var player: Node2D = $Player
+@onready var dice = $DiceContainer
+@onready var board = $GameBoard
 
 func _ready() -> void:
 	print("Game scene ready!")
@@ -13,7 +13,7 @@ func _ready() -> void:
 		var stats = player.get_node("PlayerStats")
 		print("Player starting HP: %d" % stats.current_health)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# Temporary test: press Enter to roll dice
 	if Input.is_action_just_pressed("ui_accept"):
 		if game_controller.has_method("roll_dice"):

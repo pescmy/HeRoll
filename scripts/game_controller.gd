@@ -1,11 +1,11 @@
 class_name GameController
 extends Node
 
-@onready var player: Node2D = $Player
-@onready var player_movement: PlayerMovement = $Player/PlayerMovement
-@onready var board: TileMapLayer = $GameBoard/Board
-@onready var dice_container: DiceContainer = $DiceContainer
-@onready var roll_button: Button = $RollButton
+@onready var player: Node2D = get_node("../Player")
+@onready var player_movement: PlayerMovement = get_node("../Player/PlayerMovement")
+@onready var board: TileMapLayer = get_node("../GameBoard/Board")
+@onready var dice_container: DiceContainer = get_node("../DiceContainer")
+@onready var roll_button: Button = get_node("../RollButton")
 
 func _ready() -> void:
 	if not board:

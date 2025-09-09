@@ -59,7 +59,7 @@ func move_steps(steps: int) -> void:
 		return
 
 	move_queue.clear()
-	var start_index = player_index
+
 	
 	for i in range(steps):
 		player_index = (player_index + 1) % get_total_tiles()
