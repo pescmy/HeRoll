@@ -1,11 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://cicxa224rb1ua"]
+[gd_scene load_steps=6 format=3 uid="uid://cicxa224rb1ua"]
 
 [ext_resource type="Script" uid="uid://cxdocccsa4rab" path="res://scripts/game_controller.gd" id="1_p1ry8"]
+[ext_resource type="Script" uid="uid://dsj5yh7nn6xtr" path="res://scripts/game.gd" id="1_xlg7c"]
 [ext_resource type="PackedScene" uid="uid://cr58rc6ybd75o" path="res://scene/dice.tscn" id="3_qpk70"]
 [ext_resource type="PackedScene" uid="uid://dg3xwl62blm1b" path="res://scene/player.tscn" id="4_ll5lq"]
 [ext_resource type="PackedScene" uid="uid://baqa7qxmhj6x1" path="res://scene/board.tscn" id="4_xwcet"]
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_xlg7c")
+
+[node name="GameController" type="Node2D" parent="."]
 script = ExtResource("1_p1ry8")
 
 [node name="Player" parent="." instance=ExtResource("4_ll5lq")]
