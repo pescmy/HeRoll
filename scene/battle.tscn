@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://l2qg2sg4pybs"]
+
+[ext_resource type="PackedScene" uid="uid://d3qw2i7b6y85e" path="res://scene/battle_controller.tscn" id="1_0okv5"]
+[ext_resource type="PackedScene" uid="uid://cr58rc6ybd75o" path="res://scene/dice.tscn" id="2_ebedk"]
+[ext_resource type="PackedScene" uid="uid://dg3xwl62blm1b" path="res://scene/player.tscn" id="3_q27o7"]
+[ext_resource type="PackedScene" uid="uid://b8mc6k0ihd6vq" path="res://scene/enemy.tscn" id="4_6qw66"]
+
+[node name="Battle" type="Node2D"]
+
+[node name="BattleController" parent="." instance=ExtResource("1_0okv5")]
+
+[node name="DiceContainer" parent="." instance=ExtResource("2_ebedk")]
+
+[node name="Player" parent="." instance=ExtResource("3_q27o7")]
+
+[node name="Enemy" parent="." instance=ExtResource("4_6qw66")]

@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3 uid="uid://1g2kdg2o01v3"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://1g2kdg2o01v3"]
 
 [ext_resource type="Script" uid="uid://bp4bb0bp1mktu" path="res://scripts/enemy_data.gd" id="1_3e8jy"]
+[ext_resource type="Texture2D" uid="uid://c161ex848lhm6" path="res://art/enemies/goblin.png" id="2_c17jv"]
 
 [resource]
 script = ExtResource("1_3e8jy")
@@ -9,6 +10,7 @@ max_health = 20
 strength = 5
 defense = 2
 speed = 1
+sprite = ExtResource("2_c17jv")
 reward_gold = 5
 reward_xp = 10
 metadata/_custom_type_script = "uid://bp4bb0bp1mktu"

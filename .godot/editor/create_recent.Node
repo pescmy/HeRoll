@@ -1,3 +1,4 @@
+Control
 Node2D
 Button
 RichTextLabel
@@ -9,6 +10,5 @@ AnimatedSprite2D
 Panel
 HBoxContainer
 PanelContainer
-Control
 Container
 TileMapLayer

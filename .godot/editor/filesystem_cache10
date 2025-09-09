@@ -1,9 +1,11 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1757348355
+::res://::1757429359
 icon.svg::CompressedTexture2D/CompressedTexture2D::131415617490550417::1756474501::1756475300::1::::<><><>0<>0<>4e43562cd0cd55e1632ed49093856020<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 README.md::TextFile/TextFile::-1::1756511688::0::1::::<><><>0<>0<><>::
 tile_set.png::CompressedTexture2D/CompressedTexture2D::6583167658365660709::1756483021::1756483022::1::::<><><>0<>0<>53019dc744c195dfd5ce6de8fd8a17c6<>res://.godot/imported/tile_set.png-0c317f5c3892f579c700f587287d3095.ctex::
-::res://art/::1756508199
+::res://art/::1757451133
+::res://art/enemies/::1757451138
+goblin.png::CompressedTexture2D::6663334057716211099::1757451138::1757451139::1::::<><><>0<>0<>0c644748ac937edb0e692eb6b7c60d55<>res://.godot/imported/goblin.png-9f183ddfa8478177c595596c2d592699.ctex::
 ::res://art/icons/::1756508199
 iconsDefault 64.png::CompressedTexture2D/CompressedTexture2D::3834110291415491810::1756481405::1756483300::1::::<><><>0<>0<>c085d34bd5d8e163da4f6f1460f2d7a6<>res://.godot/imported/iconsDefault 64.png-af7ac0e74e87163356cecbc27e1221e3.ctex::
 iconsDouble 128.png::CompressedTexture2D/CompressedTexture2D::3526290406564159552::1756481405::1756483301::1::::<><><>0<>0<>10c02ef9f6d3782635f19de4730eb12e<>res://.godot/imported/iconsDouble 128.png-217a4d447720f9beafe4ea0989ac68d8.ctex::
@@ -19,31 +21,35 @@ slime.tres::Resource/EnemyData::4894088545803114145::1756936496::0::1::::<><><>0
 ::res://items/::1756849191
 ::res://items/accessory/::1756849268
 boots.tres::Resource/Item::5749437439623794594::1756849268::0::1::::<><><>0<>0<><>::uid://cv2xqeytjiy41::::res://scripts/items.gd
-::res://items/armour/::1757347164
-leather_armour.tres::Resource/Item::8530569998798961200::1757347164::0::1::::<><><>0<>0<><>::uid://cv2xqeytjiy41::::res://scripts/items.gd
+::res://items/armour/::1757348375
+leather_armour.tres::Resource/Item::8530569998798961200::1757348375::0::1::::<><><>0<>0<><>::uid://cv2xqeytjiy41::::res://scripts/items.gd
 ::res://items/weapons/::1756848793
 iron_sword.tres::Resource/Item::8447364249202890444::1756848793::0::1::::<><><>0<>0<><>::uid://cv2xqeytjiy41::::res://scripts/items.gd
-::res://scene/::1757348342
-board.tscn::PackedScene::2419508749622087836::1757348331::0::1::::<><><>0<>0<><>::uid://bspwtqkrbyiyo::::res://art/misc/pixel_chess_board_b1_pal2.png
+::res://scene/::1757450894
+board.tscn::PackedScene::2419508749622087836::1757434481::0::1::::<><><>0<>0<><>::uid://bspwtqkrbyiyo::::res://art/misc/pixel_chess_board_b1_pal2.png
 combat_scene.tscn::PackedScene::6800762819001565207::1757347355::0::1::::<><><>0<>0<><>::uid://dbig1j1ke3nly::::res://scripts/combat_controller.gd
-dice.tscn::PackedScene::6030017215139802098::1757348331::0::1::::<><><>0<>0<><>::uid://buvjibgxcmm0a::::res://art/icons/iconsDefault 64.png<>uid://cewpxfhoc3la4::::res://scripts/dice_container.gd<>uid://dcbul4pjyxl4d::::res://scripts/die.gd<>uid://bk4mxouibl0s7::::res://scripts/roll_dice.gd
-enemy.tscn::PackedScene::4727602414620075806::1757348331::0::1::::<><><>0<>0<><>::uid://c7m6j8a314vlp::::res://scripts/enemy.gd<>uid://cp2q4c8wb0tex::::res://scripts/enemy_stats.gd
-game.tscn::PackedScene::5339878824012797576::1757348342::0::1::::<><><>0<>0<><>::uid://cxdocccsa4rab::::res://scripts/game_controller.gd<>uid://cr58rc6ybd75o::::res://scene/dice.tscn<>uid://dg3xwl62blm1b::::res://scene/player.tscn<>uid://baqa7qxmhj6x1::::res://scene/board.tscn
+dice.tscn::PackedScene::6030017215139802098::1757434481::0::1::::<><><>0<>0<><>::uid://buvjibgxcmm0a::::res://art/icons/iconsDefault 64.png<>uid://cewpxfhoc3la4::::res://scripts/dice_container.gd<>uid://dcbul4pjyxl4d::::res://scripts/die.gd
+enemy.tscn::PackedScene::4727602414620075806::1757450894::0::1::::<><><>0<>0<><>::uid://c7m6j8a314vlp::::res://scripts/enemy.gd
+game.tscn::PackedScene::5339878824012797576::1757434481::0::1::::<><><>0<>0<><>::uid://cxdocccsa4rab::::res://scripts/game_controller.gd<>uid://dsj5yh7nn6xtr::::res://scripts/game.gd<>uid://cr58rc6ybd75o::::res://scene/dice.tscn<>uid://dg3xwl62blm1b::::res://scene/player.tscn<>uid://baqa7qxmhj6x1::::res://scene/board.tscn
 game_controller.tscn::PackedScene/PackedScene::4567604098235171492::1757346682::0::1::::<><><>0<>0<><>::uid://cxdocccsa4rab::::res://scripts/game_controller.gd
-player.tscn::PackedScene/PackedScene::7639634095195035949::1757346682::0::1::::<><><>0<>0<><>::uid://b4wnp2f17gwn::::res://icon.svg<>uid://k1uxr663be10::::res://scripts/player.gd<>uid://gvg10lcmr0kq::::res://scripts/player_movement.gd<>uid://b00w50rkvep37::::res://scripts/player_stats.gd<>uid://dcs1it57girv3::::res://scripts/player_equipment.gd
-::res://scripts/::1757348331
+player.tscn::PackedScene::7639634095195035949::1757434481::0::1::::<><><>0<>0<><>::uid://b4wnp2f17gwn::::res://icon.svg<>uid://k1uxr663be10::::res://scripts/player.gd<>uid://gvg10lcmr0kq::::res://scripts/player_movement.gd<>uid://b00w50rkvep37::::res://scripts/player_stats.gd<>uid://dcs1it57girv3::::res://scripts/player_equipment.gd
+combat_tile_manager.tscn::PackedScene::2343037922855321035::1757429627::0::1::::<><><>0<>0<><>::
+battle_controller.tscn::PackedScene::9158964176993847508::1757434481::0::1::::<><><>0<>0<><>::uid://nnoeu8hohpyf::::res://scripts/battle_controller.gd
+battle.tscn::PackedScene::828799112274579996::1757434481::0::1::::<><><>0<>0<><>::uid://d3qw2i7b6y85e::::res://scene/battle_controller.tscn<>uid://cr58rc6ybd75o::::res://scene/dice.tscn<>uid://dg3xwl62blm1b::::res://scene/player.tscn<>uid://b8mc6k0ihd6vq::::res://scene/enemy.tscn
+::res://scripts/::1757450894
 combat_controller.gd::GDScript::7246377162683821474::1757347346::0::1::::<>Node2D<><>0<>0<><>::
-dice_container.gd::GDScript::5099965154749219785::1757348331::0::1::::<>Node2D<><>0<>0<><>::
+dice_container.gd::GDScript::5099965154749219785::1757429646::0::1::::DiceContainer<>Node2D<><>0<>0<><>::
 die.gd::GDScript::7302939646488839841::1757348331::0::1::::Die<>AnimatedSprite2D<><>0<>0<><>::
-enemy.gd::GDScript::7045556930351516001::1757347359::0::1::::<>Node2D<><>0<>0<><>::
+enemy.gd::GDScript::7045556930351516001::1757450894::0::1::::Enemy<>Node2D<><>0<>0<><>::
 enemy_data.gd::GDScript/GDScript::3499184111263309666::1756936496::0::1::::EnemyData<>Resource<><>0<>0<><>::
-enemy_stats.gd::GDScript::5882435638250973635::1757347372::0::1::::EnemyStats<>Resource<><>0<>0<><>::
-game.gd::GDScript::8443105422893606363::1757347346::0::1::::<>Node2D<><>0<>0<><>::
-game_controller.gd::GDScript::6394231622764972781::1757348331::0::1::::<>Node2D<><>0<>0<><>::
+enemy_stats.gd::GDScript::5882435638250973635::1757450894::0::1::::EnemyStats<>Node<><>0<>0<><>::
+game.gd::GDScript::8443105422893606363::1757416758::0::1::::<>Node2D<><>0<>0<><>::
+game_controller.gd::GDScript::6394231622764972781::1757415839::0::1::::GameController<>Node<><>0<>0<><>::
 items.gd::GDScript/GDScript::6303970594724952964::1756829517::0::1::::Item<>Resource<><>0<>0<><>::
 player.gd::GDScript/GDScript::756818613332869637::1756852956::0::1::::<>Node2D<><>0<>0<><>::
 player_equipment.gd::GDScript/GDScript::7338392511841682762::1756853207::0::1::::PlayerEquipment<>Node<><>0<>0<><>::
-player_movement.gd::GDScript/GDScript::464897057445782160::1756853122::0::1::::PlayerMovement<>Node2D<><>0<>0<><>::
+player_movement.gd::GDScript::464897057445782160::1757416736::0::1::::PlayerMovement<>Sprite2D<><>0<>0<><>::
 player_stats.gd::GDScript::4194141905981435652::1757347346::0::1::::PlayerStats<>Node<><>0<>0<><>::
+battle_controller.gd::GDScript::940150160954146729::1757450894::0::1::::BattleController<>Node<><>0<>0<><>::
 roll_dice.gd::GDScript::3148946518702440528::1757348331::0::1::::<>Button<><>0<>0<><>::
 ::res://sprites/::1756595149
