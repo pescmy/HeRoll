@@ -1,10 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://b8mc6k0ihd6vq"]
 
 [ext_resource type="Script" uid="uid://c7m6j8a314vlp" path="res://scripts/enemy.gd" id="1_h08p8"]
-[ext_resource type="Resource" uid="uid://1g2kdg2o01v3" path="res://enemies/goblin.tres" id="2_f87vc"]
+[ext_resource type="Script" uid="uid://cp2q4c8wb0tex" path="res://scripts/enemy_stats.gd" id="2_f87vc"]
 
 [node name="Enemy" type="Node2D"]
 script = ExtResource("1_h08p8")
-enemy_data = ExtResource("2_f87vc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="EnemyStats" type="Node2D" parent="."]
+script = ExtResource("2_f87vc")

@@ -1,14 +1,28 @@
 extends Node2D
+class_name Enemy
 
-@export var enemy_data: EnemyData   # <--- This makes it show in inspector
+@export var data: EnemyData
+@onready var stats: EnemyStats = $EnemyStats
 
-var current_health: int
+func _ready():
+	# If the scene's exported data is set in inspector, apply it.
+	if data:
+		_apply_data()
 
-@onready var sprite: Sprite2D = $Sprite2D
+func _apply_data():
+	name = data.display_name if data.display_name != "" else name
+	if stats:
+		stats.apply_blueprint(data)
+	# optionally: change sprite/animation if data.sprite_path is set
+	# var tex = preload(data.sprite_path)  # or load at runtime; be careful with timings
 
-func _ready() -> void:
-	if enemy_data:
-		current_health = enemy_data.max_health
-		sprite.texture = enemy_data.sprite
-		name = enemy_data.name
-		print("Spawned enemy: %s (HP: %d)" % [name, current_health])
+# wrapper API used by BattleController:
+func take_damage(amount: int):
+	if stats:
+		stats.take_damage(amount)
+
+func is_dead() -> bool:
+	return stats and stats.is_dead()
+
+func get_attack_damage() -> int:
+	return stats.get_attack_damage()
