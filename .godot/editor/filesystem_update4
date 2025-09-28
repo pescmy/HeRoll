@@ -1,11 +1,7 @@
 res://scene/game.tscn
-res://items/armour/leather_armour.tres
 res://scene/board.tscn
 res://scene/enemy.tscn
 res://scene/dice.tscn
 res://scene/player.tscn
 res://scene/battle_controller.tscn
 res://scene/battle.tscn
-res://scripts/battle_controller.gd
-res://scripts/enemy.gd
-res://scripts/player.gd
