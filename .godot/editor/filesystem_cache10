@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1763513200
+::res://::1774702761
 icon.svg::CompressedTexture2D/CompressedTexture2D::131415617490550417::1756474501::1756475300::1::::<><><>0<>0<>4e43562cd0cd55e1632ed49093856020<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 README.md::TextFile/TextFile::-1::1756511688::0::1::::<><><>0<>0<><>::
 tile_set.png::CompressedTexture2D/CompressedTexture2D::6583167658365660709::1756483021::1756483022::1::::<><><>0<>0<>53019dc744c195dfd5ce6de8fd8a17c6<>res://.godot/imported/tile_set.png-0c317f5c3892f579c700f587287d3095.ctex::
@@ -25,17 +25,17 @@ boots.tres::Resource/Item::5749437439623794594::1756849268::0::1::::<><><>0<>0<>
 leather_armour.tres::Resource/Item::8530569998798961200::1757517480::0::1::::<><><>0<>0<><>::uid://cv2xqeytjiy41::::res://scripts/items.gd
 ::res://items/weapons/::1756848793
 iron_sword.tres::Resource/Item::8447364249202890444::1756848793::0::1::::<><><>0<>0<><>::uid://cv2xqeytjiy41::::res://scripts/items.gd
-::res://scene/::1762270607
-battle.tscn::PackedScene::828799112274579996::1762270607::0::1::::<><><>0<>0<><>::uid://d3qw2i7b6y85e::::res://scene/battle_controller.tscn<>uid://cr58rc6ybd75o::::res://scene/dice.tscn<>uid://dg3xwl62blm1b::::res://scene/player.tscn<>uid://b8mc6k0ihd6vq::::res://scene/enemy.tscn
-battle_controller.tscn::PackedScene::9158964176993847508::1762270607::0::1::::<><><>0<>0<><>::uid://nnoeu8hohpyf::::res://scripts/battle_controller.gd<>uid://dg3xwl62blm1b::::res://scene/player.tscn<>uid://b8mc6k0ihd6vq::::res://scene/enemy.tscn
-board.tscn::PackedScene::2419508749622087836::1762270607::0::1::::<><><>0<>0<><>::uid://bspwtqkrbyiyo::::res://art/misc/pixel_chess_board_b1_pal2.png
+::res://scene/::1774630254
+battle.tscn::PackedScene::828799112274579996::1774630254::0::1::::<><><>0<>0<><>::uid://d3qw2i7b6y85e::::res://scene/battle_controller.tscn<>uid://cr58rc6ybd75o::::res://scene/dice.tscn<>uid://dg3xwl62blm1b::::res://scene/player.tscn<>uid://b8mc6k0ihd6vq::::res://scene/enemy.tscn
+battle_controller.tscn::PackedScene::9158964176993847508::1774630254::0::1::::<><><>0<>0<><>::uid://nnoeu8hohpyf::::res://scripts/battle_controller.gd<>uid://dg3xwl62blm1b::::res://scene/player.tscn<>uid://b8mc6k0ihd6vq::::res://scene/enemy.tscn
+board.tscn::PackedScene::2419508749622087836::1774630254::0::1::::<><><>0<>0<><>::uid://bspwtqkrbyiyo::::res://art/misc/pixel_chess_board_b1_pal2.png
 combat_scene.tscn::PackedScene/PackedScene::6800762819001565207::1757347355::0::1::::<><><>0<>0<><>::uid://dbig1j1ke3nly::::res://scripts/combat_controller.gd
 combat_tile_manager.tscn::PackedScene/PackedScene::2343037922855321035::1757429627::0::1::::<><><>0<>0<><>::
-dice.tscn::PackedScene::6030017215139802098::1762270607::0::1::::<><><>0<>0<><>::uid://buvjibgxcmm0a::::res://art/icons/iconsDefault 64.png<>uid://cewpxfhoc3la4::::res://scripts/dice_container.gd<>uid://dcbul4pjyxl4d::::res://scripts/die.gd
-enemy.tscn::PackedScene::4727602414620075806::1762270607::0::1::::<><><>0<>0<><>::uid://c7m6j8a314vlp::::res://scripts/enemy.gd<>uid://cp2q4c8wb0tex::::res://scripts/enemy_stats.gd
-game.tscn::PackedScene::5339878824012797576::1762270607::0::1::::<><><>0<>0<><>::uid://cxdocccsa4rab::::res://scripts/game_controller.gd<>uid://dsj5yh7nn6xtr::::res://scripts/game.gd<>uid://cr58rc6ybd75o::::res://scene/dice.tscn<>uid://dg3xwl62blm1b::::res://scene/player.tscn<>uid://baqa7qxmhj6x1::::res://scene/board.tscn
+dice.tscn::PackedScene::6030017215139802098::1774630254::0::1::::<><><>0<>0<><>::uid://buvjibgxcmm0a::::res://art/icons/iconsDefault 64.png<>uid://cewpxfhoc3la4::::res://scripts/dice_container.gd<>uid://dcbul4pjyxl4d::::res://scripts/die.gd
+enemy.tscn::PackedScene::4727602414620075806::1774630254::0::1::::<><><>0<>0<><>::uid://c7m6j8a314vlp::::res://scripts/enemy.gd<>uid://cp2q4c8wb0tex::::res://scripts/enemy_stats.gd
+game.tscn::PackedScene::5339878824012797576::1774630254::0::1::::<><><>0<>0<><>::uid://cxdocccsa4rab::::res://scripts/game_controller.gd<>uid://dsj5yh7nn6xtr::::res://scripts/game.gd<>uid://cr58rc6ybd75o::::res://scene/dice.tscn<>uid://dg3xwl62blm1b::::res://scene/player.tscn<>uid://baqa7qxmhj6x1::::res://scene/board.tscn
 game_controller.tscn::PackedScene/PackedScene::4567604098235171492::1757346682::0::1::::<><><>0<>0<><>::uid://cxdocccsa4rab::::res://scripts/game_controller.gd
-player.tscn::PackedScene::7639634095195035949::1762270607::0::1::::<><><>0<>0<><>::uid://b4wnp2f17gwn::::res://icon.svg<>uid://k1uxr663be10::::res://scripts/player.gd<>uid://gvg10lcmr0kq::::res://scripts/player_movement.gd<>uid://b00w50rkvep37::::res://scripts/player_stats.gd<>uid://dcs1it57girv3::::res://scripts/player_equipment.gd
+player.tscn::PackedScene::7639634095195035949::1774630254::0::1::::<><><>0<>0<><>::uid://b4wnp2f17gwn::::res://icon.svg<>uid://k1uxr663be10::::res://scripts/player.gd<>uid://gvg10lcmr0kq::::res://scripts/player_movement.gd<>uid://b00w50rkvep37::::res://scripts/player_stats.gd<>uid://dcs1it57girv3::::res://scripts/player_equipment.gd
 ::res://scripts/::1757520001
 battle_controller.gd::GDScript/GDScript::940150160954146729::1757517606::0::1::::BattleController<>Node<><>0<>0<><>::
 combat_controller.gd::GDScript/GDScript::7246377162683821474::1757347346::0::1::::<>Node2D<><>0<>0<><>::

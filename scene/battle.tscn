@@ -8,6 +8,7 @@
 [node name="Battle" type="Node2D"]
 
 [node name="BattleController" parent="." instance=ExtResource("1_0okv5")]
+position = Vector2(584, 181)
 
 [node name="DiceContainer" parent="." instance=ExtResource("2_ebedk")]
 

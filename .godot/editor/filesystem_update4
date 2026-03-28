@@ -1,0 +1,10 @@
+res://scene/game.tscn
+res://scene/board.tscn
+res://scene/enemy.tscn
+res://scene/dice.tscn
+res://scene/player.tscn
+res://scene/battle_controller.tscn
+res://scene/battle.tscn
+res://enemies/slime.tres
+res://items/armour/leather_armour.tres
+res://scripts/player_equipment.gd

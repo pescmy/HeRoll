@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_j13lc")
-name = "Slim"
+name = "Slime"
 max_health = 15
 strength = 3
 defense = 1

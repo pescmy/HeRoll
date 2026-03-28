@@ -4,12 +4,12 @@ class_name PlayerEquipment
 signal equipment_changed
 
 @export var equipped_weapon: Item
-@export var equipped_armor: Item
+@export var equipped_armour: Item
 @export var equipped_accessory: Item
 
 func _ready() -> void:
 	print("[Equipment] Ready. Weapon=%s Armor=%s Accessory=%s"
-		% [_name_or_none(equipped_weapon), _name_or_none(equipped_armor), _name_or_none(equipped_accessory)])
+		% [_name_or_none(equipped_weapon), _name_or_none(equipped_armour), _name_or_none(equipped_accessory)])
 
 func equip(item: Item) -> void:
 	if item == null:
@@ -17,8 +17,8 @@ func equip(item: Item) -> void:
 	match item.type:
 		"weapon":
 			equipped_weapon = item
-		"armor":
-			equipped_armor = item
+		"armour":
+			equipped_armour = item
 		"accessory":
 			equipped_accessory = item
 	print("[Equipment] Equipped %s (%s)" % [item.name, item.type])
@@ -28,8 +28,8 @@ func unequip(slot: String) -> void:
 	match slot:
 		"weapon":
 			equipped_weapon = null
-		"armor":
-			equipped_armor = null
+		"armour":
+			equipped_armour = null
 		"accessory":
 			equipped_accessory = null
 	print("[Equipment] Unequipped %s" % slot)
@@ -52,7 +52,7 @@ func get_total_bonuses() -> Dictionary:
 func get_equipment_summary() -> String:
 	var s := ""
 	s += "Weapon: %s\n" % _name_or_none(equipped_weapon)
-	s += "Armor: %s\n" % _name_or_none(equipped_armor)
+	s += "Armour: %s\n" % _name_or_none(equipped_armour)
 	s += "Accessory: %s\n" % _name_or_none(equipped_accessory)
 	return s
 
@@ -64,8 +64,8 @@ func _iter_equipped() -> Array:
 	var out: Array = []
 	if equipped_weapon != null:
 		out.append(equipped_weapon)
-	if equipped_armor != null:
-		out.append(equipped_armor)
+	if equipped_armour != null:
+		out.append(equipped_armour)
 	if equipped_accessory != null:
 		out.append(equipped_accessory)
 	return out
