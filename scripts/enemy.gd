@@ -10,9 +10,9 @@ func _ready():
 		_apply_data()
 
 func _apply_data():
-	name = data.display_name if data.display_name != "" else name
+	name = data.name if data.name != "" else name
 	if stats:
-		stats.apply_blueprint(data)
+		stats.setup(data)
 	# optionally: change sprite/animation if data.sprite_path is set
 	# var tex = preload(data.sprite_path)  # or load at runtime; be careful with timings
 

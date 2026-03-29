@@ -1,6 +1,7 @@
+ProgressBar
+Button
 Node2D
 Control
-Button
 RichTextLabel
 Label
 Node
@@ -11,4 +12,3 @@ Panel
 HBoxContainer
 PanelContainer
 Container
-TileMapLayer

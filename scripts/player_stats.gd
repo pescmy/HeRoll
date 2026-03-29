@@ -25,15 +25,15 @@ func calculate_final_stats(equipment: Node) -> void:
 	# Add bonuses from equipment if present
 	if equipment.equipped_weapon:
 		apply_item(equipment.equipped_weapon)
-	if equipment.equipped_armor:
-		apply_item(equipment.equipped_armor)
+	if equipment.equipped_armour:
+		apply_item(equipment.equipped_armour)
 	if equipment.equipped_accessory:
 		apply_item(equipment.equipped_accessory)
 
 	# Start combat health at max
 	current_health = max_health
 
-	print("Final stats => HP: %d/%d, Str: %d, Def: %d, Spd: %d" % [current_health, max_health, strength, defense, speed])
+	print("Player stats => HP: %d/%d, Str: %d, Def: %d, Spd: %d" % [current_health, max_health, strength, defense, speed])
 
 func apply_item(item: Item) -> void:
 	max_health += item.health_bonus
@@ -53,3 +53,6 @@ func heal(amount: int) -> void:
 
 func is_dead() -> bool:
 	return current_health <= 0
+
+func get_attack_damage() -> int:
+	return strength + randi_range(1, 6)

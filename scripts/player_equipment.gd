@@ -8,7 +8,7 @@ signal equipment_changed
 @export var equipped_accessory: Item
 
 func _ready() -> void:
-	print("[Equipment] Ready. Weapon=%s Armor=%s Accessory=%s"
+	print("[Equipment] Ready. Weapon=%s Armour=%s Accessory=%s"
 		% [_name_or_none(equipped_weapon), _name_or_none(equipped_armour), _name_or_none(equipped_accessory)])
 
 func equip(item: Item) -> void:
