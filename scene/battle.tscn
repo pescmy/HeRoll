@@ -13,7 +13,7 @@ enemy_health_bar = NodePath("../EnemyHealthBar")
 attack_button = NodePath("../AttackButton")
 
 [node name="Player" parent="." instance=ExtResource("3_q27o7")]
-position = Vector2(312, 317)
+position = Vector2(310, 310)
 
 [node name="AttackButton" type="Button" parent="."]
 offset_left = 566.0
@@ -23,15 +23,13 @@ offset_bottom = 613.0
 text = "Attack"
 
 [node name="PlayerHealthBar" type="ProgressBar" parent="."]
-offset_left = 50.0
-offset_top = 2.0
-offset_right = 150.0
-offset_bottom = 29.0
-show_percentage = false
+offset_left = 260.0
+offset_top = 260.0
+offset_right = 360.0
+offset_bottom = 287.0
 
 [node name="EnemyHealthBar" type="ProgressBar" parent="."]
-offset_left = 200.0
-offset_top = 2.0
-offset_right = 300.0
-offset_bottom = 29.0
-show_percentage = false
+offset_left = 460.0
+offset_top = 260.0
+offset_right = 560.0
+offset_bottom = 287.0

@@ -390,6 +390,8 @@ texture = ExtResource("1_b3264")
 58:8/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_rl6p6"]
+custom_data_layer_0/name = "tile_type"
+custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_32fhn")
 
 [node name="GameBoard" type="Node2D"]

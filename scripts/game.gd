@@ -6,6 +6,8 @@ extends Node2D
 @onready var board = $GameBoard
 
 func _ready() -> void:
+	GameData.generate_board()
+	
 	print("Game scene ready!")
 	# You can do any setup here if needed
 	# For example: set starting player stats, equipment, etc.

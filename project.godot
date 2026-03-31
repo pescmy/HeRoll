@@ -15,6 +15,10 @@ run/main_scene="uid://cicxa224rb1ua"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameData="*res://scripts/game_data.gd"
+
 [input]
 
 "Roll Dice"={

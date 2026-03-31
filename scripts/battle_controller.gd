@@ -32,7 +32,7 @@ func start_battle():
 
 	# Create the enemy
 	current_enemy = enemy_scene.instantiate()
-	current_enemy.data = enemy_data
+	current_enemy.data = GameData.current_enemy_data
 	add_child(current_enemy)
 
 	update_health_bars()
@@ -73,18 +73,22 @@ func enemy_turn():
 	else:
 		attack_button.disabled = false
 
-func end_battle(victory: bool):
+func end_battle(victory: bool) -> void:
 	if current_enemy != null:
 		current_enemy.queue_free()
 		current_enemy = null
 
 	in_battle = false
 	attack_button.disabled = true
-
+	
 	if victory:
 		print("Battle ended. Victory!")
+		await get_tree().create_timer(1.5).timeout
+		get_tree().change_scene_to_file("res://scene/game.tscn")
 	else:
 		print("Battle ended. Defeated!")
+		await get_tree().create_timer(1.5).timeout
+		get_tree().change_scene_to_file("res://scene/game.tscn")
 
 	emit_signal("battle_ended", victory)
 

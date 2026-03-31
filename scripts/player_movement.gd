@@ -73,6 +73,7 @@ func _process_next_move() -> void:
 	if move_queue.is_empty():
 		moving = false
 		print("✅ Movement complete. Player at tile %d" % player_index)
+		_on_landed(player_index)
 		return
 
 	moving = true
@@ -83,3 +84,19 @@ func _process_next_move() -> void:
 	var tween = create_tween()
 	tween.tween_property(self, "position", next_pos, duration)
 	tween.tween_callback(Callable(self, "_process_next_move"))
+
+func _on_landed(index: int) -> void:
+	var type = GameData.tile_types.get(index, "safe")
+	print("Landed on %s tile" % type)
+	
+	match type:
+		"combat":
+			GameData.current_enemy_data = _pick_enemy()
+			get_tree().change_scene_to_file("res://scene/battle.tscn")
+		"shop":
+			pass
+		"safe":
+			pass
+
+func _pick_enemy() -> EnemyData:
+	return load("res://enemies/goblin.tres") as EnemyData
