@@ -16,3 +16,6 @@ res://scripts/player_movement.gd
 res://scene/game_board.tscn
 res://scripts/board_icons.gd
 res://scripts/game.gd
+res://scripts/start_tile_ui.gd
+res://scene/start_tile_ui.tscn
+res://scripts/player_stats.gd

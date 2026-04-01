@@ -100,8 +100,9 @@ func _process_next_move() -> void:
 	tween.tween_callback(Callable(self, "_process_next_move"))
 
 func _on_passed_start() -> void:
+	GameData.loop_count += 1
 	print("🏁 Passed start tile — choose a bonus!")
-	# TODO: show extract/heal/gold choice UI
+	get_tree().get_root().get_node("Game/StartTileUI").show_choices()
 
 func _on_landed(index: int) -> void:
 	var type = GameData.tile_types.get(index, "safe")
@@ -109,6 +110,8 @@ func _on_landed(index: int) -> void:
 	
 	match type:
 		"combat":
+			GameData.player_current_health = get_parent().get_node("PlayerStats").current_health
+			print("💾 Saving health: %d" % GameData.player_current_health)
 			GameData.player_tile_index = player_index
 			GameData.current_enemy_data = _pick_enemy()
 			get_tree().change_scene_to_file("res://scene/battle.tscn")

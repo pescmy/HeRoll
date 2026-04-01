@@ -16,13 +16,11 @@ var speed: int
 
 # --- Setup ---
 func calculate_final_stats(equipment: Node) -> void:
-	# Reset to base stats
 	max_health = base_health
 	strength = base_strength
 	defense = base_defense
 	speed = base_speed
 
-	# Add bonuses from equipment if present
 	if equipment.equipped_weapon:
 		apply_item(equipment.equipped_weapon)
 	if equipment.equipped_armour:
@@ -30,10 +28,14 @@ func calculate_final_stats(equipment: Node) -> void:
 	if equipment.equipped_accessory:
 		apply_item(equipment.equipped_accessory)
 
-	# Start combat health at max
-	current_health = max_health
+	# Restore saved health or start at max
+	if GameData.player_current_health == -1:
+		current_health = max_health
+	else:
+		current_health = GameData.player_current_health
+		print("💾 Restoring health: %d" % current_health)
 
-	print("Player stats => HP: %d/%d, Str: %d, Def: %d, Spd: %d" % [current_health, max_health, strength, defense, speed])
+	print("Final stats => HP: %d/%d, Str: %d, Def: %d, Spd: %d" % [current_health, max_health, strength, defense, speed])
 
 func apply_item(item: Item) -> void:
 	max_health += item.health_bonus

@@ -8,6 +8,12 @@ var tile_shop: int = 2
 var current_enemy_data: Array[EnemyData] = []
 var tile_types: Dictionary = {}
 
+var player_gold: int = 0
+var player_current_health: int = -1
+
+
+var loop_count: int = 0
+
 func _ready() -> void:
 	generate_board()
 

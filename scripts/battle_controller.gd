@@ -86,11 +86,15 @@ func end_battle(victory: bool) -> void:
 	enemies.clear()
 	current_target = null
 	in_battle = false
-
+	
+		# Save player health before leaving battle scene
+	GameData.player_current_health = player.get_current_health()
+	print("💾 Saving health after battle: %d" % GameData.player_current_health)
+	
 	emit_signal("battle_ended", victory)
-
+	
 	await get_tree().create_timer(1.5).timeout
-
+	
 	if victory:
 		get_tree().change_scene_to_file("res://scene/game.tscn")
 	else:

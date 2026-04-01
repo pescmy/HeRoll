@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=3 uid="uid://diir4e6rkfil8"]
+
+[ext_resource type="Script" uid="uid://dc270glh0lmf" path="res://scripts/start_tile_ui.gd" id="1_jkeh5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jkeh5"]
+
+[node name="StartTileUI" type="CanvasLayer"]
+script = ExtResource("1_jkeh5")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jkeh5")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -61.5
+offset_right = 61.5
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Choose a bonus"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -58.0
+offset_top = -76.5
+offset_right = 58.0
+offset_bottom = 76.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Extract" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Extract"
+
+[node name="Heal" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Heal +20"
+
+[node name="Gold" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Gold +50"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Extract" to="." method="_on_extract_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Heal" to="." method="_on_heal_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Gold" to="." method="_on_gold_pressed"]
