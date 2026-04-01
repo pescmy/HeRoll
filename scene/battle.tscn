@@ -1,12 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://l2qg2sg4pybs"]
+[gd_scene load_steps=4 format=3 uid="uid://l2qg2sg4pybs"]
 
 [ext_resource type="PackedScene" uid="uid://d3qw2i7b6y85e" path="res://scene/battle_controller.tscn" id="1_0okv5"]
+[ext_resource type="Script" uid="uid://d4cvk8hggxi8r" path="res://scripts/battle_ui.gd" id="2_soyo5"]
 [ext_resource type="PackedScene" uid="uid://dg3xwl62blm1b" path="res://scene/player.tscn" id="3_q27o7"]
 
 [node name="Battle" type="Node2D"]
 
-[node name="BattleController" parent="." node_paths=PackedStringArray("player", "player_health_bar", "enemy_health_bar", "attack_button") instance=ExtResource("1_0okv5")]
+[node name="BattleController" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_0okv5")]
 position = Vector2(-2, 3)
+player = NodePath("../Player")
+
+[node name="BattleUI" type="Node2D" parent="." node_paths=PackedStringArray("battle_controller", "player", "player_health_bar", "enemy_health_bar", "attack_button")]
+script = ExtResource("2_soyo5")
+battle_controller = NodePath("../BattleController")
 player = NodePath("../Player")
 player_health_bar = NodePath("../PlayerHealthBar")
 enemy_health_bar = NodePath("../EnemyHealthBar")

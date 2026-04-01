@@ -1,13 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3qw2i7b6y85e"]
+[gd_scene load_steps=2 format=3 uid="uid://d3qw2i7b6y85e"]
 
 [ext_resource type="Script" uid="uid://nnoeu8hohpyf" path="res://scripts/battle_controller.gd" id="1_5bk0i"]
-[ext_resource type="PackedScene" uid="uid://b8mc6k0ihd6vq" path="res://scene/enemy.tscn" id="3_mk702"]
-[ext_resource type="Resource" uid="uid://1g2kdg2o01v3" path="res://enemies/goblin.tres" id="4_mk702"]
 
 [node name="BattleController" type="Node2D"]
 script = ExtResource("1_5bk0i")
-enemy_scene = ExtResource("3_mk702")
-enemy_data = ExtResource("4_mk702")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

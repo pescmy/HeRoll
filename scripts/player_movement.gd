@@ -4,14 +4,15 @@ class_name PlayerMovement
 # --- Board settings ---
 @export var tile_size: int = 32
 @export var grid_size: int = 10
-@export var board_start: Vector2 = Vector2(0, 0) # Will be calculated relative to parent position
+@export var board_start: Vector2 = Vector2(0, 0)
 
 # --- Movement settings ---
 var player_index: int = 0
 var board_positions: Array[Vector2] = []
 var move_queue: Array[Vector2] = []
 var moving: bool = false
-@export var move_speed: float = 200.0 # pixels per second
+var passed_start: bool = false
+@export var move_speed: float = 200.0
 
 func _ready() -> void:
 	# Don't auto-setup here, let the GameController call it
@@ -20,7 +21,7 @@ func _ready() -> void:
 # --- Setup board ---
 func set_board_positions() -> void:
 	board_positions.clear()
-	player_index = 0
+	player_index = GameData.player_tile_index
 	
 	# Calculate board start relative to the game board position
 	# Adjust this offset to match your actual board position
@@ -45,7 +46,7 @@ func set_board_positions() -> void:
 
 	# Place player at first position
 	if board_positions.size() > 0:
-		position = board_positions[0]
+		position = board_positions[player_index]
 		print("👤 Player starting at position: ", position)
 
 func get_total_tiles() -> int:
@@ -59,10 +60,20 @@ func move_steps(steps: int) -> void:
 		return
 
 	move_queue.clear()
+	passed_start = false
 
-	
 	for i in range(steps):
-		player_index = (player_index + 1) % get_total_tiles()
+		var next_index = (player_index + 1) % get_total_tiles()
+
+		# Check if we're crossing or landing on the start tile
+		if next_index == 0 and player_index != 0:
+			player_index = 0
+			move_queue.append(board_positions[0])
+			print("📍 Passing start tile — stopping here")
+			passed_start = true
+			break
+
+		player_index = next_index
 		move_queue.append(board_positions[player_index])
 		print("📍 Queuing move to position %d: %s" % [player_index, board_positions[player_index]])
 
@@ -73,17 +84,24 @@ func _process_next_move() -> void:
 	if move_queue.is_empty():
 		moving = false
 		print("✅ Movement complete. Player at tile %d" % player_index)
-		_on_landed(player_index)
+
+		if passed_start:
+			_on_passed_start()
+		else:
+			_on_landed(player_index)
 		return
 
 	moving = true
 	var next_pos = move_queue.pop_front()
 	var distance = position.distance_to(next_pos)
 	var duration = distance / move_speed
-
 	var tween = create_tween()
 	tween.tween_property(self, "position", next_pos, duration)
 	tween.tween_callback(Callable(self, "_process_next_move"))
+
+func _on_passed_start() -> void:
+	print("🏁 Passed start tile — choose a bonus!")
+	# TODO: show extract/heal/gold choice UI
 
 func _on_landed(index: int) -> void:
 	var type = GameData.tile_types.get(index, "safe")
@@ -91,6 +109,7 @@ func _on_landed(index: int) -> void:
 	
 	match type:
 		"combat":
+			GameData.player_tile_index = player_index
 			GameData.current_enemy_data = _pick_enemy()
 			get_tree().change_scene_to_file("res://scene/battle.tscn")
 		"shop":
@@ -98,5 +117,6 @@ func _on_landed(index: int) -> void:
 		"safe":
 			pass
 
-func _pick_enemy() -> EnemyData:
-	return load("res://enemies/goblin.tres") as EnemyData
+func _pick_enemy() -> Array[EnemyData]:
+	var goblin = load("res://enemies/goblin.tres") as EnemyData
+	return [goblin, goblin]

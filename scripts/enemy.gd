@@ -3,6 +3,7 @@ class_name Enemy
 
 @export var data: EnemyData
 @onready var stats: EnemyStats = $EnemyStats
+@onready var sprite: Sprite2D = $Sprite2D
 
 func _ready():
 	# If the scene's exported data is set in inspector, apply it.
@@ -13,6 +14,8 @@ func _apply_data():
 	name = data.name if data.name != "" else name
 	if stats:
 		stats.setup(data)
+	if data.sprite:
+		sprite.texture = data.sprite
 	# optionally: change sprite/animation if data.sprite_path is set
 	# var tex = preload(data.sprite_path)  # or load at runtime; be careful with timings
 

@@ -3,97 +3,95 @@ extends Node
 class_name BattleController
 
 @export var player: Node2D
-@export var enemy_scene: PackedScene
-@export var enemy_data: EnemyData
 
-@export var player_health_bar: ProgressBar
-@export var enemy_health_bar: ProgressBar
-
-@export var attack_button: Button
-
-var current_enemy: Node = null
+var enemies: Array = []
+var current_target: Node = null
 var in_battle: bool = false
 
-signal battle_started(enemy: Node)
+signal battle_started
 signal battle_ended(victory: bool)
+signal player_attacked(damage: int)
+signal enemy_attacked(damage: int)
+signal enemy_died(enemy: Node)
+signal target_changed(enemy: Node)
 
 func _ready():
-	attack_button.pressed.connect(_on_attack_pressed)
 	call_deferred("start_battle")
-
-func _on_attack_pressed():
-	if in_battle:
-		player_attack()
 
 func start_battle():
 	if in_battle:
 		return
 	in_battle = true
 
-	# Create the enemy
-	current_enemy = enemy_scene.instantiate()
-	current_enemy.data = GameData.current_enemy_data
-	add_child(current_enemy)
+	for i in range(GameData.current_enemy_data.size()):
+		var enemy = load("res://scene/enemy.tscn").instantiate()
+		enemy.data = GameData.current_enemy_data[i]
+		add_child(enemy)
+		enemy.position = Vector2(902 + (i * 120), 350)
+		enemies.append(enemy)
 
-	update_health_bars()
-
-	emit_signal("battle_started", current_enemy)
-	print("Battle started against: %s" % current_enemy.name)
+	current_target = enemies[0]
+	emit_signal("battle_started")
+	emit_signal("target_changed", current_target)
+	print("Battle started with %d enemies" % enemies.size())
 
 func player_attack():
-	if not in_battle or current_enemy == null:
+	if not in_battle or current_target == null:
 		return
 
 	var damage = player.get_attack_damage()
-	print("Player attacks for %d damage" % damage)
-	current_enemy.take_damage(damage)
+	current_target.take_damage(damage)
+	emit_signal("player_attacked", damage)
+	print("Player attacks %s for %d damage" % [current_target.name, damage])
 
-	update_health_bars()
+	if current_target.is_dead():
+		emit_signal("enemy_died", current_target)
+		enemies.erase(current_target)
+		current_target.queue_free()
+		current_target = null
 
-	if current_enemy.is_dead():
-		end_battle(true)
-	else:
-		enemy_turn()
+		if enemies.is_empty():
+			end_battle(true)
+			return
+		else:
+			current_target = enemies[0]
+			emit_signal("target_changed", current_target)
+
+	enemy_turn()
+
+func get_living_enemies() -> Array:
+	return enemies.filter(func(e): return not e.is_dead())
 
 func enemy_turn():
-	if not in_battle or current_enemy == null:
+	if not in_battle:
 		return
 
-	attack_button.disabled = true
+	var living = get_living_enemies()
+	living.sort_custom(func(a, b): return a.stats.speed > b.stats.speed)
 
-	if current_enemy.has_method("get_attack_damage") and player.has_method("take_damage"):
-		var damage = current_enemy.get_attack_damage()
-		print("Enemy attacks for %d damage" % damage)
+	for enemy in living:
+		var damage = enemy.get_attack_damage()
 		player.take_damage(damage)
-	
-	update_health_bars()
-	
-	if player.is_dead():
-		end_battle(false)
-	else:
-		attack_button.disabled = false
+		emit_signal("enemy_attacked", damage)
+		print("%s attacks for %d damage" % [enemy.name, damage])
+
+		if player.is_dead():
+			end_battle(false)
+			return
 
 func end_battle(victory: bool) -> void:
-	if current_enemy != null:
-		current_enemy.queue_free()
-		current_enemy = null
-
+	for enemy in enemies:
+		if is_instance_valid(enemy):
+			enemy.queue_free()
+	enemies.clear()
+	current_target = null
 	in_battle = false
-	attack_button.disabled = true
-	
-	if victory:
-		print("Battle ended. Victory!")
-		await get_tree().create_timer(1.5).timeout
-		get_tree().change_scene_to_file("res://scene/game.tscn")
-	else:
-		print("Battle ended. Defeated!")
-		await get_tree().create_timer(1.5).timeout
-		get_tree().change_scene_to_file("res://scene/game.tscn")
 
 	emit_signal("battle_ended", victory)
 
-func update_health_bars() -> void:
-	player_health_bar.max_value = player.get_max_health()
-	player_health_bar.value = player.get_current_health()
-	enemy_health_bar.max_value = current_enemy.stats.max_health
-	enemy_health_bar.value = current_enemy.stats.current_health
+	await get_tree().create_timer(1.5).timeout
+
+	if victory:
+		get_tree().change_scene_to_file("res://scene/game.tscn")
+	else:
+		get_tree().change_scene_to_file("res://scene/game.tscn")

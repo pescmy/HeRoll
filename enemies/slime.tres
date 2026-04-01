@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3 uid="uid://cbyy6nl64i2d6"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://cbyy6nl64i2d6"]
 
 [ext_resource type="Script" uid="uid://bp4bb0bp1mktu" path="res://scripts/enemy_data.gd" id="1_j13lc"]
+[ext_resource type="Texture2D" uid="uid://dhk5ga83bc24j" path="res://art/enemies/slime.png" id="2_ipa7r"]
 
 [resource]
 script = ExtResource("1_j13lc")
@@ -9,6 +10,7 @@ max_health = 15
 strength = 3
 defense = 1
 speed = 1
+sprite = ExtResource("2_ipa7r")
 reward_gold = 5
 reward_xp = 10
 metadata/_custom_type_script = "uid://bp4bb0bp1mktu"
