@@ -21,7 +21,7 @@ var carried_resources: Dictionary = {
 
 var loop_count: int = 0
 
-
+signal resources_changed
 
 func _ready() -> void:
 	if not board_generated:

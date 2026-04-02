@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://lccjk25vggef"]
+
+[ext_resource type="Script" uid="uid://crmho17v2e1pl" path="res://scripts/resource_display.gd" id="1_6l6r5"]
+
+[node name="ResourceDisplay" type="CanvasLayer"]
+script = ExtResource("1_6l6r5")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -93.5
+offset_right = 93.5
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_constants/separation = 20
+
+[node name="GoldLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Gold: 0"
+
+[node name="WoodLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Wood: 0"
+
+[node name="StoneLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Stone: 0"

@@ -131,6 +131,7 @@ func _on_resource_landed() -> void:
 	var amount = base_amount + (GameData.loop_count * 5)
 	GameData.carried_resources[type] += amount
 	print("💎 Gained %d %s! Total: %s" % [amount, type, GameData.carried_resources])
+	GameData.emit_signal("resources_changed")
 
 func _pick_enemy() -> Array[EnemyData]:
 	var goblin = load("res://enemies/goblin.tres") as EnemyData

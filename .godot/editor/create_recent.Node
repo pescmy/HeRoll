@@ -1,9 +1,10 @@
+Label
+HBoxContainer
+CanvasLayer
 MarginContainer
 Button
 VBoxContainer
-Label
 Panel
-CanvasLayer
 Node2D
 Sprite2D
 AnimatedSprite2D
@@ -11,5 +12,3 @@ ProgressBar
 Control
 RichTextLabel
 Node
-Area2D
-HBoxContainer

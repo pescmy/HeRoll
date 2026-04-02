@@ -10,3 +10,5 @@ res://scene/start_tile_ui.tscn
 res://scripts/board_icons.gd
 res://scripts/game_data.gd
 res://scripts/player_movement.gd
+res://scripts/resource_display.gd
+res://scene/resource_display.tscn
