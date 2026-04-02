@@ -119,8 +119,18 @@ func _on_landed(index: int) -> void:
 			get_tree().change_scene_to_file("res://scene/battle.tscn")
 		"shop":
 			pass
+		"resource":
+			_on_resource_landed()
 		"safe":
 			pass
+
+func _on_resource_landed() -> void:
+	var resource = ["gold", "wood", "stone"]
+	var type = resource.pick_random()
+	var base_amount = randi_range(5, 15)
+	var amount = base_amount + (GameData.loop_count * 5)
+	GameData.carried_resources[type] += amount
+	print("💎 Gained %d %s! Total: %s" % [amount, type, GameData.carried_resources])
 
 func _pick_enemy() -> Array[EnemyData]:
 	var goblin = load("res://enemies/goblin.tres") as EnemyData

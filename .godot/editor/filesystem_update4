@@ -1,6 +1,4 @@
 res://scene/game.tscn
-res://scripts/game.gd
-res://scripts/player_movement.gd
 res://scene/game_board.tscn
 res://scene/enemy.tscn
 res://scene/dice.tscn
@@ -9,5 +7,6 @@ res://scene/battle_controller.tscn
 res://scene/game_controller.tscn
 res://scene/battle.tscn
 res://scene/start_tile_ui.tscn
-res://scripts/game_data.gd
 res://scripts/board_icons.gd
+res://scripts/game_data.gd
+res://scripts/player_movement.gd

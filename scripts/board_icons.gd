@@ -10,6 +10,7 @@ class_name BoardIcons
 var icon_map: Dictionary = {
 	"combat": preload("res://art/board/sword-clash.png"),
 	"shop": preload("res://art/board/shop.png"),
+	"resource": preload("res://art/board/gems.png")
 }
 
 func _ready() -> void:
