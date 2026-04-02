@@ -4,10 +4,9 @@ extends Node2D
 @onready var player: Node2D = $Player
 @onready var dice = $DiceContainer
 @onready var board = $GameBoard
+var board_generated: bool = false
 
 func _ready() -> void:
-	GameData.generate_board()
-	
 	print("Game scene ready!")
 	# You can do any setup here if needed
 	# For example: set starting player stats, equipment, etc.

@@ -75,7 +75,7 @@ func move_steps(steps: int) -> void:
 
 		player_index = next_index
 		move_queue.append(board_positions[player_index])
-		print("📍 Queuing move to position %d: %s" % [player_index, board_positions[player_index]])
+		#print("📍 Queuing move to position %d: %s" % [player_index, board_positions[player_index]])
 
 	if not moving:
 		_process_next_move()
@@ -101,6 +101,8 @@ func _process_next_move() -> void:
 
 func _on_passed_start() -> void:
 	GameData.loop_count += 1
+	GameData.generate_board()
+	get_tree().get_root().get_node("Game/GameBoard/BoardIcons").refresh()
 	print("🏁 Passed start tile — choose a bonus!")
 	get_tree().get_root().get_node("Game/StartTileUI").show_choices()
 

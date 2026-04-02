@@ -2,7 +2,7 @@ extends Node
 
 var player_tile_index: int = 0
 
-var tile_combat: int = 30
+var tile_combat: int = 15
 var tile_shop: int = 2
 
 var current_enemy_data: Array[EnemyData] = []
@@ -11,11 +11,14 @@ var tile_types: Dictionary = {}
 var player_gold: int = 0
 var player_current_health: int = -1
 
+var board_generated: bool = false
 
 var loop_count: int = 0
 
 func _ready() -> void:
-	generate_board()
+	if not board_generated:
+		generate_board()
+		board_generated = true
 
 func generate_board() -> void:
 	tile_types.clear()
@@ -45,3 +48,5 @@ func generate_board() -> void:
 	# Rest are safe
 	for i in range(tile_combat + tile_shop, pool.size()):
 		tile_types[pool[i]] = "safe"
+	
+	board_generated = true

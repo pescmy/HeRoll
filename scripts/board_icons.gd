@@ -16,6 +16,7 @@ func _ready() -> void:
 	generate_icons()
 
 func generate_icons() -> void:
+	print("🗺️ Generating icons, tile_types: ", GameData.tile_types)
 	var positions = get_tile_positions()
 	
 	for index in GameData.tile_types:
@@ -45,3 +46,11 @@ func get_tile_positions() -> Array[Vector2]:
 		positions.append(board_offset + Vector2(0, row * tile_size))
 	
 	return positions
+
+func refresh() -> void:
+	# Clear existing icons
+	for child in get_children():
+		child.queue_free()
+	# Regenerate
+	generate_icons()
+	
