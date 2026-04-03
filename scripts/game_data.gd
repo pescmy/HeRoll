@@ -12,6 +12,7 @@ var current_enemy_data: Array[EnemyData] = []
 
 var player_gold: int = 0
 var player_current_health: int = -1
+var player_max_health: int = 100
 
 var carried_resources: Dictionary = {
 	"gold": 0,

@@ -34,7 +34,9 @@ func calculate_final_stats(equipment: Node) -> void:
 	else:
 		current_health = GameData.player_current_health
 		print("💾 Restoring health: %d" % current_health)
-
+	
+	GameData.player_max_health = max_health
+	
 	print("Final stats => HP: %d/%d, Str: %d, Def: %d, Spd: %d" % [current_health, max_health, strength, defense, speed])
 
 func apply_item(item: Item) -> void:

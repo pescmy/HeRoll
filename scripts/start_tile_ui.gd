@@ -24,7 +24,11 @@ func _on_extract_pressed() -> void:
 	emit_signal("choice_made")
 
 func _on_heal_pressed() -> void:
-	print("Healed for %d" % heal_amount)
+	GameData.player_current_health = min(
+		GameData.player_current_health + heal_amount,
+		GameData.player_max_health
+	)
+	print("Healed for %d! HP: %d/%d" % [heal_amount, GameData.player_current_health, GameData.player_max_health])
 	_hide_ui()
 	emit_signal("choice_made")
 
