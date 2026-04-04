@@ -3,7 +3,7 @@ extends Node
 var player_tile_index: int = 0
 var board_generated: bool = false
 
-var tile_combat: int = 5
+var tile_combat: int = 0
 var tile_shop: int = 2
 var tile_resource: int = 20
 var tile_types: Dictionary = {}

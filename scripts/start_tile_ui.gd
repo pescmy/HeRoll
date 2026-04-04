@@ -24,13 +24,13 @@ func _on_extract_pressed() -> void:
 	emit_signal("choice_made")
 
 func _on_heal_pressed() -> void:
-	GameData.player_current_health = min(
-		GameData.player_current_health + heal_amount,
-		GameData.player_max_health
-	)
-	print("Healed for %d! HP: %d/%d" % [heal_amount, GameData.player_current_health, GameData.player_max_health])
+	var player_stats = get_tree().get_root().get_node("Game/Player/PlayerStats")
+	var new_health = min(player_stats.current_health + heal_amount, player_stats.max_health)
+	player_stats.current_health = new_health
+	GameData.player_current_health = new_health
+	print("Healed for %d! HP: %d/%d" % [heal_amount, new_health, player_stats.max_health])
 	_hide_ui()
-	emit_signal("choice_made")
+	choice_made.emit()
 
 func _on_gold_pressed() -> void:
 	GameData.player_gold += gold_amount
