@@ -11,3 +11,6 @@ res://scene/battle_controller.tscn
 res://scene/game_controller.tscn
 res://scene/battle.tscn
 res://scene/start_tile_ui.tscn
+res://scripts/battle_controller.gd
+res://scripts/player_movement.gd
+res://scripts/save_manager.gd

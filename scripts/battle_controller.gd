@@ -85,6 +85,10 @@ func end_battle(victory: bool) -> void:
 			enemy.queue_free()
 	enemies.clear()
 	current_target = null
+	
+	GameData.player_current_health = player.get_current_health()
+	SaveManager.save()
+	
 	in_battle = false
 	
 		# Save player health before leaving battle scene

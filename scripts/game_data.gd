@@ -25,6 +25,7 @@ var loop_count: int = 0
 signal resources_changed
 
 func _ready() -> void:
+	SaveManager.load_save()
 	if not board_generated:
 		generate_board()
 		board_generated = true

@@ -101,12 +101,16 @@ func _process_next_move() -> void:
 
 func _on_passed_start() -> void:
 	GameData.loop_count += 1
+	SaveManager.save()
+	
+	GameData.loop_count += 1
 	GameData.generate_board()
 	get_tree().get_root().get_node("Game/GameBoard/BoardIcons").refresh()
 	print("🏁 Passed start tile — choose a bonus!")
 	get_tree().get_root().get_node("Game/StartTileUI").show_choices()
 
 func _on_landed(index: int) -> void:
+	GameData.player_tile_index = index
 	var type = GameData.tile_types.get(index, "safe")
 	print("Landed on %s tile" % type)
 	
