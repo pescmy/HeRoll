@@ -102,4 +102,7 @@ func end_battle(victory: bool) -> void:
 	if victory:
 		get_tree().change_scene_to_file("res://scene/game.tscn")
 	else:
-		get_tree().change_scene_to_file("res://scene/game.tscn")
+		GameData.reset_run()
+		SaveManager.save()
+		#await get_tree().create_timer(1.5).timeout
+		get_tree().change_scene_to_file("res://scene/death_screen.tscn")

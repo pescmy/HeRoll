@@ -16,6 +16,7 @@ script = ExtResource("2_fvtld")
 
 [node name="PlayerStats" type="Node2D" parent="."]
 script = ExtResource("3_fvtld")
+base_health = 1
 
 [node name="PlayerEquipment" type="Node2D" parent="."]
 script = ExtResource("4_ct4mp")

@@ -3,9 +3,9 @@ extends Node
 var player_tile_index: int = 0
 var board_generated: bool = false
 
-var tile_combat: int = 0
+var tile_combat: int = 20
 var tile_shop: int = 2
-var tile_resource: int = 20
+var tile_resource: int = 10
 var tile_types: Dictionary = {}
 
 var current_enemy_data: Array[EnemyData] = []
@@ -62,6 +62,16 @@ func remove_from_inventory(index: int) -> void:
 	if index >= 0 and index < inventory_size:
 		inventory[index] = {}
 		inventory_changed.emit()
+
+var last_lost_resources: Array = []
+
+func reset_run() -> void:
+	last_lost_resources = inventory.filter(func(slot): return not slot.is_empty())
+	player_tile_index = 0
+	player_current_health = -1
+	loop_count = 0
+	board_generated = false
+	init_inventory()
 
 func generate_board() -> void:
 	tile_types.clear()
