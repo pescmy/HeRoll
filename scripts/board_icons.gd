@@ -17,7 +17,7 @@ func _ready() -> void:
 	generate_icons()
 
 func generate_icons() -> void:
-	print("🗺️ Generating icons, tile_types: ", GameData.tile_types)
+	#print("🗺️ Generating icons, tile_types: ", GameData.tile_types)
 	var positions = get_tile_positions()
 	
 	for index in GameData.tile_types:

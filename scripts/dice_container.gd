@@ -35,6 +35,6 @@ func _on_die_roll_finished(result: int) -> void:
 		emit_signal("dice_rolled", total, results)
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("Roll Dice"): # R key (set in InputMap)
+	if event.is_action_pressed("roll dice"): # R key (set in InputMap)
 		roll_all_dice()
 		print("🎲 R triggered a roll")

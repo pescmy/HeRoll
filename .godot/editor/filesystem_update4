@@ -14,3 +14,8 @@ res://scene/start_tile_ui.tscn
 res://scripts/battle_controller.gd
 res://scripts/player_movement.gd
 res://scripts/save_manager.gd
+res://scripts/resource_display.gd
+res://scripts/board_icons.gd
+res://scene/inventory_ui.tscn
+res://scripts/inventory_ui.gd
+res://scripts/dice_container.gd

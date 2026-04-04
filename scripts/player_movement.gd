@@ -83,7 +83,7 @@ func move_steps(steps: int) -> void:
 func _process_next_move() -> void:
 	if move_queue.is_empty():
 		moving = false
-		print("✅ Movement complete. Player at tile %d" % player_index)
+		#print("✅ Movement complete. Player at tile %d" % player_index)
 
 		if passed_start:
 			_on_passed_start()
@@ -129,13 +129,20 @@ func _on_landed(index: int) -> void:
 			pass
 
 func _on_resource_landed() -> void:
-	var resource = ["gold", "wood", "stone"]
-	var type = resource.pick_random()
+	var resources = ["gold", "wood", "stone"]
+	var icons = {
+		"gold": "res://art/resources/coins.png",
+		"wood": "res://art/resources/wood_pile.png",
+		"stone": "res://art/resources/stone_pile.png"
+	}
+	var type = resources.pick_random()
 	var base_amount = randi_range(5, 15)
 	var amount = base_amount + (GameData.loop_count * 5)
-	GameData.carried_resources[type] += amount
-	print("💎 Gained %d %s! Total: %s" % [amount, type, GameData.carried_resources])
-	GameData.emit_signal("resources_changed")
+	var success = GameData.add_to_inventory(type, "resource", amount, icons[type])
+	if success:
+		print("💎 Gained %d %s!" % [amount, type])
+	else:
+		print("❌ Couldn't pick up %s — inventory full!" % type)
 
 func _pick_enemy() -> Array[EnemyData]:
 	var goblin = load("res://enemies/goblin.tres") as EnemyData

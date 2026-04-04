@@ -14,21 +14,54 @@ var player_gold: int = 0
 var player_current_health: int = -1
 var player_max_health: int = 100
 
-var carried_resources: Dictionary = {
-	"gold": 0,
-	"wood": 0,
-	"stone": 0
-}
+var inventory: Array = []
+var inventory_size: int = 10
 
 var loop_count: int = 0
 
-signal resources_changed
+signal inventory_changed
 
 func _ready() -> void:
 	SaveManager.load_save()
+	init_inventory()
 	if not board_generated:
 		generate_board()
 		board_generated = true
+
+func init_inventory() -> void:
+	inventory.clear()
+	for i in range(inventory_size):
+		inventory.append({})
+
+func add_to_inventory(item_name: String, item_type: String, amount: int, icon_path: String) -> bool:
+	# Check if resource already has a slot
+	if item_type == "resource":
+		for slot in inventory:
+			if not slot.is_empty() and slot["name"] == item_name:
+				slot["amount"] += amount
+				inventory_changed.emit()
+				return true
+	
+	# Find empty slot
+	for i in range(inventory_size):
+		if inventory[i].is_empty():
+			inventory[i] = {
+				"name": item_name,
+				"type": item_type,
+				"amount": amount,
+				"icon": icon_path
+			}
+			inventory_changed.emit()
+			return true
+	
+	# Inventory full
+	print("❌ Inventory full!")
+	return false
+
+func remove_from_inventory(index: int) -> void:
+	if index >= 0 and index < inventory_size:
+		inventory[index] = {}
+		inventory_changed.emit()
 
 func generate_board() -> void:
 	tile_types.clear()

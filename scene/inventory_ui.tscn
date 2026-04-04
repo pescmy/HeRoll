@@ -1,0 +1,113 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyblpd0tcjwhv"]
+
+[ext_resource type="Script" uid="uid://bllhttlbtsqu" path="res://scripts/inventory_ui.gd" id="1_ia0un"]
+
+[node name="InventoryUI" type="CanvasLayer"]
+script = ExtResource("1_ia0un")
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Inventory" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Inventory"
+
+[node name="GridContainer" type="GridContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+columns = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Panel/VBoxContainer/GridContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Amount" type="Label" parent="Panel/VBoxContainer/GridContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Panel/VBoxContainer/GridContainer/PanelContainer2"]
+layout_mode = 2
+
+[node name="Amount" type="Label" parent="Panel/VBoxContainer/GridContainer/PanelContainer2"]
+layout_mode = 2
+
+[node name="PanelContainer3" type="PanelContainer" parent="Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Panel/VBoxContainer/GridContainer/PanelContainer3"]
+layout_mode = 2
+
+[node name="Amount" type="Label" parent="Panel/VBoxContainer/GridContainer/PanelContainer3"]
+layout_mode = 2
+
+[node name="PanelContainer4" type="PanelContainer" parent="Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Panel/VBoxContainer/GridContainer/PanelContainer4"]
+layout_mode = 2
+
+[node name="Amount" type="Label" parent="Panel/VBoxContainer/GridContainer/PanelContainer4"]
+layout_mode = 2
+
+[node name="PanelContainer5" type="PanelContainer" parent="Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Panel/VBoxContainer/GridContainer/PanelContainer5"]
+layout_mode = 2
+
+[node name="Amount" type="Label" parent="Panel/VBoxContainer/GridContainer/PanelContainer5"]
+layout_mode = 2
+
+[node name="PanelContainer6" type="PanelContainer" parent="Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Panel/VBoxContainer/GridContainer/PanelContainer6"]
+layout_mode = 2
+
+[node name="Amount" type="Label" parent="Panel/VBoxContainer/GridContainer/PanelContainer6"]
+layout_mode = 2
+
+[node name="PanelContainer7" type="PanelContainer" parent="Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Panel/VBoxContainer/GridContainer/PanelContainer7"]
+layout_mode = 2
+
+[node name="Amount" type="Label" parent="Panel/VBoxContainer/GridContainer/PanelContainer7"]
+layout_mode = 2
+
+[node name="PanelContainer8" type="PanelContainer" parent="Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Panel/VBoxContainer/GridContainer/PanelContainer8"]
+layout_mode = 2
+
+[node name="Amount" type="Label" parent="Panel/VBoxContainer/GridContainer/PanelContainer8"]
+layout_mode = 2
+
+[node name="PanelContainer9" type="PanelContainer" parent="Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Panel/VBoxContainer/GridContainer/PanelContainer9"]
+layout_mode = 2
+
+[node name="Amount" type="Label" parent="Panel/VBoxContainer/GridContainer/PanelContainer9"]
+layout_mode = 2
+
+[node name="PanelContainer10" type="PanelContainer" parent="Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Panel/VBoxContainer/GridContainer/PanelContainer10"]
+layout_mode = 2
+
+[node name="Amount" type="Label" parent="Panel/VBoxContainer/GridContainer/PanelContainer10"]
+layout_mode = 2

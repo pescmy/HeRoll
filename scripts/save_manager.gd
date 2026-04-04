@@ -10,7 +10,7 @@ func save() -> void:
 		"player_max_health": GameData.player_max_health,
 		"loop_count": GameData.loop_count,
 		"player_gold": GameData.player_gold,
-		"carried_resources": GameData.carried_resources,
+		"inventory": GameData.inventory,
 		"tile_types": GameData.tile_types,
 		"board_generated": GameData.board_generated,
 	}
@@ -38,7 +38,7 @@ func load_save() -> void:
 	GameData.player_max_health = data["player_max_health"]
 	GameData.loop_count = data["loop_count"]
 	GameData.player_gold = data["player_gold"]
-	GameData.carried_resources = data["carried_resources"]
+	GameData.inventory = data["inventory"]
 	GameData.board_generated = data["board_generated"]
 	
 	# Tile types keys come back as strings from JSON, convert back to int
