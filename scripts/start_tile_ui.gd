@@ -19,9 +19,15 @@ func _hide_ui() -> void:
 	$Panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 func _on_extract_pressed() -> void:
-	print("Extracted! Gold banked: %d" % GameData.player_gold)
+	# Move carried resources to town storage
+	for slot in GameData.inventory:
+		if not slot.is_empty() and slot["type"] == "resource":
+			TownData.add_to_storage(slot["name"], slot["amount"])
+	GameData.reset_run()
+	SaveManager.save()
+	print("Extracted! Resources banked.")
 	_hide_ui()
-	emit_signal("choice_made")
+	get_tree().change_scene_to_file("res://scene/town.tscn")
 
 func _on_heal_pressed() -> void:
 	var player_stats = get_tree().get_root().get_node("Game/Player/PlayerStats")
@@ -33,7 +39,10 @@ func _on_heal_pressed() -> void:
 	choice_made.emit()
 
 func _on_gold_pressed() -> void:
-	GameData.player_gold += gold_amount
-	print("Received %d gold! Total: %d" % [gold_amount, GameData.player_gold])
+	var success = GameData.add_to_inventory("gold", "resource", gold_amount, "res://art/resources/coins.png")
+	if success:
+		print("Received %d gold!" % gold_amount)
+	else:
+		print("❌ Couldn't pick up gold — inventory full!")
 	_hide_ui()
 	emit_signal("choice_made")

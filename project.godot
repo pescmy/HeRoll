@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 SaveManager="*res://scripts/save_manager.gd"
 GameData="*res://scripts/game_data.gd"
+TownData="*res://scripts/town_data.gd"
 
 [input]
 

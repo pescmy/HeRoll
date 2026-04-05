@@ -1,8 +1,8 @@
 Button
-Label
 VBoxContainer
-Panel
+Label
 CanvasLayer
+Panel
 TextureRect
 PanelContainer
 GridContainer

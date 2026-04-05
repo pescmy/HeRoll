@@ -9,10 +9,12 @@ func save() -> void:
 		"player_current_health": GameData.player_current_health,
 		"player_max_health": GameData.player_max_health,
 		"loop_count": GameData.loop_count,
-		"player_gold": GameData.player_gold,
 		"inventory": GameData.inventory,
 		"tile_types": GameData.tile_types,
 		"board_generated": GameData.board_generated,
+		"town_storage": TownData.town_storage,
+		"buildings": TownData.buildings,
+		"upgrades": TownData.upgrades,
 	}
 	
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
@@ -37,15 +39,17 @@ func load_save() -> void:
 	GameData.player_current_health = data["player_current_health"]
 	GameData.player_max_health = data["player_max_health"]
 	GameData.loop_count = data["loop_count"]
-	GameData.player_gold = data["player_gold"]
 	GameData.inventory = data["inventory"]
 	GameData.board_generated = data["board_generated"]
 	
-	# Tile types keys come back as strings from JSON, convert back to int
 	var tile_types: Dictionary = {}
 	for key in data["tile_types"]:
 		tile_types[int(key)] = data["tile_types"][key]
 	GameData.tile_types = tile_types
+	
+	TownData.town_storage = data["town_storage"]
+	TownData.buildings = data["buildings"]
+	TownData.upgrades = data["upgrades"]
 	
 	print("✅ Game loaded")
 

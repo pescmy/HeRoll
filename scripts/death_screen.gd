@@ -21,5 +21,4 @@ func _show_lost_resources() -> void:
 
 func _on_try_again_pressed() -> void:
 	SaveManager.save()
-	# TODO: change to town scene once built
-	get_tree().change_scene_to_file("res://scene/game.tscn")
+	get_tree().change_scene_to_file("res://scene/town.tscn")

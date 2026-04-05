@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://b11v0lvgnq40"]
+
+[ext_resource type="Script" uid="uid://cmthj7prycs7v" path="res://scripts/town.gd" id="1_px035"]
+
+[node name="Town" type="Node2D"]
+script = ExtResource("1_px035")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TownLabel" type="Label" parent="UI/VBoxContainer"]
+layout_mode = 2
+text = "- Town -"
+
+[node name="Storage" type="VBoxContainer" parent="UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="GoldLabel" type="Label" parent="UI/VBoxContainer/Storage"]
+layout_mode = 2
+text = "Gold: 0"
+
+[node name="WoodLabel" type="Label" parent="UI/VBoxContainer/Storage"]
+layout_mode = 2
+text = "Wood: 0"
+
+[node name="StoneLabel" type="Label" parent="UI/VBoxContainer/Storage"]
+layout_mode = 2
+text = "Stone: 0"
+
+[node name="Buildings" type="VBoxContainer" parent="UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="StartRunButton" type="Button" parent="UI/VBoxContainer"]
+layout_mode = 2
+text = "Start Run"

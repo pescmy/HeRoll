@@ -9,15 +9,13 @@ var tile_resource: int = 10
 var tile_types: Dictionary = {}
 
 var current_enemy_data: Array[EnemyData] = []
-
 var player_gold: int = 0
 var player_current_health: int = -1
 var player_max_health: int = 100
-
 var inventory: Array = []
 var inventory_size: int = 10
-
 var loop_count: int = 0
+var last_lost_resources: Array = []
 
 signal inventory_changed
 
@@ -62,8 +60,6 @@ func remove_from_inventory(index: int) -> void:
 	if index >= 0 and index < inventory_size:
 		inventory[index] = {}
 		inventory_changed.emit()
-
-var last_lost_resources: Array = []
 
 func reset_run() -> void:
 	last_lost_resources = inventory.filter(func(slot): return not slot.is_empty())
