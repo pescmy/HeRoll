@@ -26,3 +26,7 @@ text = "Wood: 0"
 [node name="StoneLabel" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 text = "Stone: 0"
+
+[node name="LoopLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Loop: 0"

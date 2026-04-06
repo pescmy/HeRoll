@@ -18,6 +18,7 @@ var loop_count: int = 0
 var last_lost_resources: Array = []
 
 signal inventory_changed
+signal loop_changed(new_count: int)
 
 func _ready() -> void:
 	SaveManager.load_save()
@@ -68,6 +69,10 @@ func reset_run() -> void:
 	loop_count = 0
 	board_generated = false
 	init_inventory()
+
+func increment_loop() -> void:
+	loop_count += 1
+	loop_changed.emit(loop_count)
 
 func generate_board() -> void:
 	tile_types.clear()

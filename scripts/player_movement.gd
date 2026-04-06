@@ -100,7 +100,7 @@ func _process_next_move() -> void:
 	tween.tween_callback(Callable(self, "_process_next_move"))
 
 func _on_passed_start() -> void:
-	GameData.loop_count += 1
+	GameData.increment_loop()
 	SaveManager.save()
 	GameData.generate_board()
 	get_tree().get_root().get_node("Game/GameBoard/BoardIcons").refresh()
