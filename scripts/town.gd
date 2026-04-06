@@ -32,6 +32,13 @@ func _ready() -> void:
 	start_run_button.pressed.connect(_on_start_run_pressed)
 	_build_building_rows()
 	refresh()
+	_update_start_button()
+
+func _update_start_button() -> void:
+	if GameData.player_tile_index > 0:
+		start_run_button.text = "Continue Run"
+	else:
+		start_run_button.text = "Start Run"
 
 func refresh() -> void:
 	gold_label.text = "Gold: %d" % TownData.town_storage.get("gold", 0)
