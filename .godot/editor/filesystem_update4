@@ -11,8 +11,5 @@ res://scene/resource_display.tscn
 res://scene/inventory_ui.tscn
 res://scene/death_screen.tscn
 res://scene/town.tscn
-res://scripts/town.gd
-res://scripts/enemy_stats.gd
-res://scripts/resource_display.gd
 res://scripts/game_data.gd
-res://scripts/player_movement.gd
+res://scripts/inventory_ui.gd

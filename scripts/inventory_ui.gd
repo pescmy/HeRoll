@@ -15,15 +15,15 @@ func _ready() -> void:
 func _setup_layout() -> void:
 	var style = StyleBoxFlat.new()
 	style.bg_color = Color(0.15, 0.15, 0.15, 1.0)
-	style.border_width_left = 2
-	style.border_width_right = 2
+	style.border_width_left = -2
+	style.border_width_right = -2
 	style.border_width_top = 2
 	style.border_width_bottom = 2
 	style.border_color = Color(0.5, 0.5, 0.5, 1.0)
 	$Panel.add_theme_stylebox_override("panel", style)
 	
 	var viewport_size = get_viewport().get_visible_rect().size
-	var panel_size = Vector2(370, 300)
+	var panel_size = Vector2(400, 300)
 	var pos = (viewport_size - panel_size) / 2
 	pos.y += 50
 	$Panel.set_position(pos)
@@ -66,7 +66,10 @@ func _build_slots() -> void:
 		
 		var label = Label.new()
 		label.set_anchors_preset(Control.PRESET_BOTTOM_RIGHT)
+		label.grow_horizontal = Control.GROW_DIRECTION_BEGIN
+		label.grow_vertical = Control.GROW_DIRECTION_BEGIN
 		label.name = "Amount"
+		label.add_theme_color_override("font_color", Color.RED)
 		
 		overlay.add_child(texture_rect)
 		overlay.add_child(label)
