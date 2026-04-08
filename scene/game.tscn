@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cicxa224rb1ua"]
+[gd_scene load_steps=10 format=3 uid="uid://cicxa224rb1ua"]
 
 [ext_resource type="Script" uid="uid://cxdocccsa4rab" path="res://scripts/game_controller.gd" id="1_p1ry8"]
 [ext_resource type="Script" uid="uid://dsj5yh7nn6xtr" path="res://scripts/game.gd" id="1_xlg7c"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://diir4e6rkfil8" path="res://scene/start_tile_ui.tscn" id="6_xlg7c"]
 [ext_resource type="PackedScene" uid="uid://lccjk25vggef" path="res://scene/resource_display.tscn" id="7_qpk70"]
 [ext_resource type="PackedScene" uid="uid://dyblpd0tcjwhv" path="res://scene/inventory_ui.tscn" id="8_ll5lq"]
+[ext_resource type="PackedScene" uid="uid://rkgsegodofue" path="res://scene/shop_ui.tscn" id="9_17rxn"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_xlg7c")
@@ -38,3 +39,5 @@ visible = false
 [node name="ResourceDisplay" parent="." instance=ExtResource("7_qpk70")]
 
 [node name="InventoryUI" parent="." instance=ExtResource("8_ll5lq")]
+
+[node name="ShopUI" parent="." instance=ExtResource("9_17rxn")]

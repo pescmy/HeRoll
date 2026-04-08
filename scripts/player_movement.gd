@@ -120,7 +120,7 @@ func _on_landed(index: int) -> void:
 			GameData.current_enemy_data = _pick_enemy()
 			get_tree().change_scene_to_file("res://scene/battle.tscn")
 		"shop":
-			pass
+			get_tree().get_root().get_node("Game/ShopUI").open_shop()
 		"resource":
 			_on_resource_landed()
 		"safe":

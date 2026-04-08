@@ -13,3 +13,9 @@ res://scene/death_screen.tscn
 res://scene/town.tscn
 res://scripts/game_data.gd
 res://scripts/inventory_ui.gd
+res://shop.tscn
+res://scene/shop_ui.tscn
+res://scripts/shop_data.gd
+res://scripts/shop_ui.gd
+res://scripts/game_controller.gd
+res://scripts/player_movement.gd

@@ -22,6 +22,7 @@ func _ready() -> void:
 	# Hook up signals
 	roll_button.pressed.connect(_on_roll_button_pressed)
 	dice_container.dice_rolled.connect(_on_dice_rolled)
+	get_node("../ShopUI").shop_closed.connect(_on_shop_closed)
 
 func _on_roll_button_pressed() -> void:
 	dice_container.roll_all_dice()
@@ -34,3 +35,6 @@ func _on_dice_rolled(total: int, results: Array) -> void:
 		player_movement.move_steps(total)
 	else:
 		push_error("❌ PlayerMovement not found, cannot move player")
+
+func _on_shop_closed() -> void:
+	SaveManager.save()

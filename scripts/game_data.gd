@@ -3,13 +3,14 @@ extends Node
 var player_tile_index: int = 0
 var board_generated: bool = false
 
+#36 board tiles, 4 corner tiles safe so 32 tiles
 var tile_combat: int = 2
-var tile_shop: int = 2
-var tile_resource: int = 20
+var tile_shop: int = 28
+var tile_resource: int = 2
 var tile_types: Dictionary = {}
 
 var current_enemy_data: Array[EnemyData] = []
-var player_gold: int = 0
+#var player_gold: int = 0
 var player_current_health: int = -1
 var player_max_health: int = 100
 var inventory: Array = []
@@ -31,6 +32,8 @@ func init_inventory() -> void:
 	inventory.clear()
 	for i in range(inventory_size):
 		inventory.append({})
+	# DEBUG - remove before release
+	inventory[0] = {"name": "gold", "type": "resource", "amount": 200, "icon": "res://art/resources/coins.png"}
 
 func add_to_inventory(item_name: String, item_type: String, amount: int, icon_path: String) -> bool:
 	# Check if resource already has a slot
