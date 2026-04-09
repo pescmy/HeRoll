@@ -12,11 +12,12 @@ script = ExtResource("1_s4jxa")
 [node name="PlayerMovement" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_hjaqi")
+region_rect = Rect2(0, 0, 203, 186)
 script = ExtResource("2_fvtld")
 
 [node name="PlayerStats" type="Node2D" parent="."]
 script = ExtResource("3_fvtld")
-base_health = 10
+base_health = 260
 
 [node name="PlayerEquipment" type="Node2D" parent="."]
 script = ExtResource("4_ct4mp")

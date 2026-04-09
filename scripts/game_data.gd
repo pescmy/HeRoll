@@ -4,9 +4,9 @@ var player_tile_index: int = 0
 var board_generated: bool = false
 
 #36 board tiles, 4 corner tiles safe so 32 tiles
-var tile_combat: int = 28
+var tile_combat: int = 2
 var tile_shop: int = 2
-var tile_resource: int = 2
+var tile_resource: int = 28
 var tile_types: Dictionary = {}
 
 var current_enemy_data: Array[EnemyData] = []

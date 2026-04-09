@@ -1,3 +1,4 @@
+res://scene/death_screen.tscn
 res://scene/game.tscn
 res://scene/game_board.tscn
 res://scene/enemy.tscn
@@ -9,8 +10,7 @@ res://scene/battle.tscn
 res://scene/start_tile_ui.tscn
 res://scene/resource_display.tscn
 res://scene/inventory_ui.tscn
-res://scene/death_screen.tscn
 res://scene/town.tscn
 res://scene/shop_ui.tscn
 res://scripts/game_data.gd
-res://scripts/death_screen.gd
+res://scripts/inventory_ui.gd

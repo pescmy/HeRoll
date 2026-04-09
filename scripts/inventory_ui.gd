@@ -44,8 +44,10 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("inventory"):
 		if visible:
 			hide()
+			get_tree().get_root().get_node("Game/RollButton").disabled = false
 		else:
 			show()
+			owner.find_child("RollButton").disabled = true
 
 func _build_slots() -> void:
 	for i in range(GameData.inventory_size):

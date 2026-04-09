@@ -1,0 +1,83 @@
+GAME DESIGN DOCUMENT – DICE ROGUELIKE IDLE HYBRID
+CORE CONCEPT
+A dice-based roguelike where the player moves around a looping board, collecting resources and items while deciding when to extract or risk continuing. The game combines push-your-luck mechanics with persistent town progression.
+CORE GAMEPLAY LOOP
+Player starts a run from town
+Selects class, dice loadout and resources to carry
+Rolls dice to move around a 36-tile looping board
+Lands on tiles which trigger events: Combat, Resource gain, Shop, Events
+Collects resources and items into limited inventory
+Player chooses: Extract (bank rewards safely) or Continue (higher risk and reward)
+On death: All carried resources are lost
+On extraction: All carried resources move to town storage
+BOARD DESIGN
+36 tiles in a loop
+Fixed layout with structured distribution: Combat tiles (majority), Resource tiles, Shop tiles, Event tiles, Elite tiles (hard encounters)
+LOOP SCALING SYSTEM
+Each completed loop: Increases enemy difficulty, Increases rewards, Raises overall risk level ("heat")
+START TILE SYSTEM
+Each time the player passes the start tile, they choose one bonus: Heal percentage, Gold reward, Temporary buff (e.g. dice bonus)
+DICE SYSTEM
+Player selects dice before run
+Can equip 1–3 dice
+Dice are rolled automatically
+Total roll determines movement
+Future: Dice modifiers via items, Conditional dice effects
+COMBAT SYSTEM
+Auto-resolved combat
+Based on player stats vs enemy stats
+Fast and simple resolution
+Active and passive class abilities add depth to combat decisions
+INVENTORY SYSTEM
+Limited capacity
+Items and resources share space
+Player must make decisions on what to keep or discard
+RESOURCE SYSTEM
+Two resource pools:
+Town Storage: Permanent, used for upgrades, cannot be lost
+Carried Resources: Taken into runs, at risk during gameplay, lost on death, banked on extraction
+TOWN SYSTEM
+Persistent progression layer
+Uses stored resources for upgrades
+Unlocks new mechanics over time
+Buildings: Blacksmith (weapons), Armoury (armour), Jeweller (accessories), Apothecary (health), Training Grounds (speed), Town Vault (storage)
+Buildings cost mixed gold/wood/stone to construct
+Once built, players spend gold inside buildings for upgrades
+CLASS SYSTEM
+Player selects a class before each run from the town screen
+Classes define base stats, allowed equipment types, and abilities
+Classes are defined as .tres resource files (PlayerClassData)
+Planned classes: Knight, Mage, Archer (expandable)
+Each class has one passive ability (always active) and one active ability (triggered in combat)
+Abilities are defined as .tres resource files (AbilityData) with type (PASSIVE/ACTIVE), effect type, value, and cooldown
+Equipment restrictions: certain classes cannot equip certain item types (e.g. mage cannot equip heavy armour)
+Shop filters items by class allowed types
+Classes can be expanded and new ones unlocked via town progression
+ABILITY SYSTEM
+Two ability types: Passive (always on) and Active (player triggered in combat)
+Effect types include: Heal, Damage Boost, Defense Boost, Extra Attack (expandable)
+Active abilities have cooldowns
+Abilities are data-driven via AbilityData resource, no new code required per ability
+PLAYER DECISION DESIGN
+Risk vs reward (continue vs extract)
+Inventory management (what to keep/drop)
+Loadout choices (class, dice and carried resources)
+Strategic use of start bonuses
+Class and ability decisions in combat
+DESIGN GOALS
+Fast, repeatable runs
+High replayability through randomness and scaling
+Strong risk/reward tension
+Clear player agency in failure and success
+Deep meta builds through class, equipment and ability combinations
+MVP SCOPE
+Initial version includes: Board movement, Dice rolling, Basic tiles (combat, resource, shop), Inventory system, Death and extraction, Loop scaling
+Excludes: Advanced items, Dice modifiers, Complex town systems, Automation, Class system
+FUTURE FEATURES
+Class system with Knight, Mage, Archer and expandable roster
+Active and passive ability system
+Dice modification system via items
+Expanded town building system
+Automation and idle mechanics
+Advanced events and encounters
+Hero system and assignments
