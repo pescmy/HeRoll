@@ -4,8 +4,8 @@ var player_tile_index: int = 0
 var board_generated: bool = false
 
 #36 board tiles, 4 corner tiles safe so 32 tiles
-var tile_combat: int = 2
-var tile_shop: int = 28
+var tile_combat: int = 28
+var tile_shop: int = 2
 var tile_resource: int = 2
 var tile_types: Dictionary = {}
 
@@ -34,6 +34,8 @@ func init_inventory() -> void:
 		inventory.append({})
 	# DEBUG - remove before release
 	inventory[0] = {"name": "gold", "type": "resource", "amount": 200, "icon": "res://art/resources/coins.png"}
+	inventory[1] = {"name": "wood", "type": "resource", "amount": 200, "icon": "res://art/resources/wood_pile.png"}
+	inventory[2] = {"name": "stone", "type": "resource", "amount": 200, "icon": "res://art/resources/stone_pile.png"}
 
 func add_to_inventory(item_name: String, item_type: String, amount: int, icon_path: String) -> bool:
 	# Check if resource already has a slot
