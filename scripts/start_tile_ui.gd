@@ -13,10 +13,12 @@ func _ready() -> void:
 func show_choices() -> void:
 	self.show()
 	$Panel.mouse_filter = Control.MOUSE_FILTER_STOP
+	owner.find_child("RollButton").disabled = true
 
 func _hide_ui() -> void:
 	self.hide()
 	$Panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	owner.find_child("RollButton").disabled = false
 
 func _on_extract_pressed() -> void:
 	# Move carried resources to town storage
@@ -46,3 +48,15 @@ func _on_gold_pressed() -> void:
 		print("❌ Couldn't pick up gold — inventory full!")
 	_hide_ui()
 	emit_signal("choice_made")
+
+func _input(event: InputEvent) -> void:
+	if not event is InputEventKey or not event.pressed:
+		return
+	if not visible:
+		return
+	if Input.is_action_just_pressed("extract"):
+		_on_extract_pressed()
+	elif Input.is_action_just_pressed("heal"):
+		_on_heal_pressed()
+	elif Input.is_action_just_pressed("gold"):
+		_on_gold_pressed()

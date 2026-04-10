@@ -8,7 +8,9 @@ class_name BoardIcons
 @export var icon_scale: Vector2 = Vector2(1, 1)
 
 var icon_map: Dictionary = {
-	"combat": preload("res://art/board/sword-clash.png"),
+	"combat_1": preload("res://art/board/sword-clash.png"),
+	"combat_2": preload("res://art/board/sword-clash.png"),
+	"combat_3": preload("res://art/board/sword-clash.png"),
 	"shop": preload("res://art/board/shop.png"),
 	"resource": preload("res://art/board/gems.png")
 }
@@ -17,19 +19,33 @@ func _ready() -> void:
 	generate_icons()
 
 func generate_icons() -> void:
-	#print("🗺️ Generating icons, tile_types: ", GameData.tile_types)
 	var positions = get_tile_positions()
 	
 	for index in GameData.tile_types:
-		var type = GameData.tile_types[index]
-		if not icon_map.has(type):
+		var tile = GameData.tile_types[index]
+		var type = tile["type"]
+		var stars = tile["stars"]
+		
+		var icon_key = type
+		if type == "combat":
+			icon_key = "combat_%d" % stars
+		
+		if not icon_map.has(icon_key):
 			continue
 		
 		var sprite = Sprite2D.new()
-		sprite.texture = icon_map[type]
+		sprite.texture = icon_map[icon_key]
 		sprite.position = positions[index]
 		sprite.scale = icon_scale
 		add_child(sprite)
+		
+		if type == "combat" and stars > 0:
+			var label = Label.new()
+			label.text = str(stars)
+			label.position = positions[index] + Vector2(-8, -20)
+			label.add_theme_color_override("font_color", Color.RED)
+			label.add_theme_constant_override("outline_size",20)
+			add_child(label)
 
 func get_tile_positions() -> Array[Vector2]:
 	var positions: Array[Vector2] = []

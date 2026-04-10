@@ -70,3 +70,10 @@ func update_enemy_health_bar() -> void:
 	if battle_controller.current_target != null:
 		enemy_health_bar.max_value = battle_controller.current_target.stats.max_health
 		enemy_health_bar.value = battle_controller.current_target.stats.current_health
+
+func _input(event: InputEvent) -> void:
+	if not event is InputEventKey or not event.pressed:
+		return
+	if battle_controller.in_battle:
+		if Input.is_action_just_pressed("attack"):
+			battle_controller.player_attack()

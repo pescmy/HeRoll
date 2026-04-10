@@ -109,15 +109,16 @@ func _on_passed_start() -> void:
 
 func _on_landed(index: int) -> void:
 	GameData.player_tile_index = index
-	var type = GameData.tile_types.get(index, "safe")
-	print("Landed on %s tile" % type)
+	var tile = GameData.tile_types.get(index, {"type": "safe", "stars": 0})
+	var type = tile["type"]
+	print("Landed on %s tile (stars: %d)" % [type, tile["stars"]])
 	
 	match type:
 		"combat":
 			GameData.player_current_health = get_parent().get_node("PlayerStats").current_health
 			print("💾 Saving health: %d" % GameData.player_current_health)
 			GameData.player_tile_index = player_index
-			GameData.current_enemy_data = _pick_enemy()
+			GameData.current_enemy_data = _pick_enemy(tile["stars"])
 			get_tree().change_scene_to_file("res://scene/battle.tscn")
 		"shop":
 			get_tree().get_root().get_node("Game/ShopUI").open_shop()
@@ -142,6 +143,32 @@ func _on_resource_landed() -> void:
 	else:
 		print("❌ Couldn't pick up %s — inventory full!" % type)
 
-func _pick_enemy() -> Array[EnemyData]:
-	var goblin = load("res://enemies/goblin.tres") as EnemyData
-	return [goblin, goblin]
+func _pick_enemy(stars: int) -> Array[EnemyData]:
+	var enemy_pool = [
+		load("res://enemies/goblin.tres") as EnemyData,
+		load("res://enemies/slime.tres") as EnemyData,
+		load("res://enemies/skeleton.tres") as EnemyData,
+	]
+	
+	# Filter by loop unlock
+	var available = enemy_pool.filter(func(e): return GameData.loop_count >= e.get_min_loop())
+	
+	# Budget per enemy slot based on stars + loop scaling
+	var budget_per_enemy = float(stars) * 3.0 + (GameData.loop_count * 0.3)
+	
+	var result: Array[EnemyData] = []
+	
+	# Spawn exactly stars number of enemies
+	for i in range(stars):
+		var affordable = available.filter(func(e): return e.get_threat() <= budget_per_enemy)
+		if affordable.is_empty():
+			# Fallback to cheapest available
+			var cheapest = available.reduce(func(a, b): return a if a.get_threat() < b.get_threat() else b)
+			result.append(cheapest)
+		else:
+			result.append(affordable.pick_random())
+	
+	print("⚔️ %d★ encounter (budget per enemy %.1f): %d enemies" % [stars, budget_per_enemy, result.size()])
+	for e in result:
+		print("  - %s (threat %.1f)" % [e.name, e.get_threat()])
+	return result

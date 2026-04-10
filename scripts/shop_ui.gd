@@ -57,7 +57,7 @@ func open_shop() -> void:
 	shop_item = _generate_item()
 	_refresh_item()
 	_refresh_resources()
-	get_tree().get_root().get_node("Game/RollButton").disabled = true
+	owner.find_child("RollButton").disabled = true
 	show()
 
 # --- Item generation ---
@@ -153,7 +153,7 @@ func _on_buy_resource_pressed(resource_name: String, price: int, amount: int) ->
 	print("🛒 Bought %d %s for %d gold" % [amount, resource_name, price])
 
 func _on_leave_pressed() -> void:
-	get_tree().get_root().get_node("Game/RollButton").disabled = false
+	owner.find_child("RollButton").disabled = false
 	hide()
 	shop_closed.emit()
 
@@ -178,3 +178,11 @@ func _get_stat_summary(item: Item) -> String:
 	if item.speed_bonus > 0: parts.append("+%d SPD" % item.speed_bonus)
 	if item.health_bonus > 0: parts.append("+%d HP" % item.health_bonus)
 	return ", ".join(parts) if parts.size() > 0 else "No bonuses"
+
+func _input(event: InputEvent) -> void:
+	if not event is InputEventKey or not event.pressed:
+		return
+	if not visible:
+		return
+	if Input.is_action_just_pressed("leave_shop"):
+		_on_leave_pressed()

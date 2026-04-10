@@ -23,17 +23,23 @@ func save() -> void:
 	print("💾 Game saved")
 
 func load_save() -> void:
+	print("🔍 Attempting to load save from: " + SAVE_PATH)
 	if not FileAccess.file_exists(SAVE_PATH):
-		print("No save file found")
+		print("❌ No save file found")
 		return
 	
 	var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
-	var data = JSON.parse_string(file.get_as_text())
+	var raw = file.get_as_text()
+	print("📄 Raw save data: " + raw)
+	var data = JSON.parse_string(raw)
 	file.close()
 	
 	if data == null:
 		print("❌ Failed to parse save file")
 		return
+
+	print("✅ Save loaded - tile_index: %d, loop: %d, health: %d" % [data["player_tile_index"], data["loop_count"], data["player_current_health"]])
+	# ... rest of load
 	
 	GameData.player_tile_index = data["player_tile_index"]
 	GameData.player_current_health = data["player_current_health"]
@@ -44,7 +50,11 @@ func load_save() -> void:
 	
 	var tile_types: Dictionary = {}
 	for key in data["tile_types"]:
-		tile_types[int(key)] = data["tile_types"][key]
+		var tile = data["tile_types"][key]
+		tile_types[int(key)] = {
+			"type": tile["type"],
+			"stars": int(tile["stars"])
+		}
 	GameData.tile_types = tile_types
 	
 	TownData.town_storage = data["town_storage"]

@@ -87,6 +87,14 @@ func _on_building_constructed(_building_name: String) -> void:
 	_refresh_building_buttons()
 
 func _on_start_run_pressed() -> void:
-	GameData.reset_run()
-	SaveManager.save()
+	# Only reset if starting fresh, not continuing
+	if GameData.player_tile_index == 0:
+		GameData.reset_run()
+		SaveManager.save()
 	get_tree().change_scene_to_file("res://scene/game.tscn")
+
+func _input(event: InputEvent) -> void:
+	if not event is InputEventKey or not event.pressed:
+		return
+	if Input.is_action_just_pressed("ui_accept"):
+		_on_start_run_pressed()
