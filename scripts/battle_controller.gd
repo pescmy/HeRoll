@@ -18,9 +18,9 @@ signal target_changed(enemy: Node)
 func _ready():
 	call_deferred("start_battle")
 
-func _process(_delta: float) -> void:
-	if in_battle and Input.is_action_just_pressed("attack"):
-		player_attack()
+#func _process(_delta: float) -> void:
+	#if in_battle and Input.is_action_just_pressed("attack"):
+		#player_attack()
 
 func start_battle():
 	if in_battle:

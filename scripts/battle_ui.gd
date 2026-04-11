@@ -17,7 +17,14 @@ func _ready():
 	battle_controller.enemy_died.connect(_on_enemy_died)
 	battle_controller.target_changed.connect(_on_target_changed)
 	attack_button.pressed.connect(_on_attack_pressed)
-	set_process_input(true)
+	set_process_unhandled_input(true)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if not event is InputEventKey or not event.pressed:
+		return
+	if battle_controller.in_battle:
+		if Input.is_action_just_pressed("attack"):
+			battle_controller.player_attack()
 
 func setup_layout() -> void:
 	player.position = Vector2(200, 350)
