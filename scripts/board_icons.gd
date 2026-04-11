@@ -4,7 +4,7 @@ class_name BoardIcons
 
 @export var tile_size: int = 32
 @export var grid_size: int = 10
-@export var board_offset: Vector2 = Vector2(-tile_size*grid_size / 2 + tile_size / 2, -tile_size*grid_size / 2 + tile_size / 2)
+@export var board_offset: Vector2 = Vector2(-tile_size*grid_size / 2.0 + tile_size / 2.0, -tile_size*grid_size / 2.0 + tile_size / 2.0)
 @export var icon_scale: Vector2 = Vector2(1, 1)
 
 var icon_map: Dictionary = {

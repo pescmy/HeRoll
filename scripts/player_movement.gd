@@ -149,24 +149,17 @@ func _spawn_floating_text(text: String) -> void:
 	var floating_text = preload("res://scene/floating_text.tscn").instantiate()
 	floating_text.text = text
 	
-	# Determine offset based on board position
-	var offset = Vector2(-30, -40) # default top/bottom
+	var float_offset = Vector2(-30, -40)
 	var total_tiles = get_total_tiles()
-	var top_row = grid_size # 0 to grid_size-1
-	var right_col = grid_size + grid_size - 1 # right column tiles
-	var bottom_row = right_col + grid_size - 1 # bottom row tiles
 	
 	if player_index >= grid_size and player_index < grid_size + grid_size - 1:
-		# Right side — float to the right
-		offset = Vector2(40, -30)
+		float_offset = Vector2(40, -30)
 	elif player_index >= grid_size + grid_size - 1 and player_index < total_tiles - (grid_size - 2):
-		# Bottom row — float downward
-		offset = Vector2(-30, 40)
+		float_offset = Vector2(-30, 40)
 	elif player_index >= total_tiles - (grid_size - 2):
-		# Left side — float to the left
-		offset = Vector2(-80, -30)
+		float_offset = Vector2(-80, -30)
 	
-	floating_text.position = position + offset
+	floating_text.position = position + float_offset
 	get_parent().add_child(floating_text)
 
 func _pick_enemy(stars: int) -> Array[EnemyData]:
@@ -194,7 +187,17 @@ func _pick_enemy(stars: int) -> Array[EnemyData]:
 		else:
 			result.append(affordable.pick_random())
 	
+	# Print encounter with numbered names
+	var name_counts = {}
+	for e in result:
+		name_counts[e.name] = name_counts.get(e.name, 0) + 1
+	var name_index = {}
 	print("⚔️ %d★ encounter (budget per enemy %.1f): %d enemies" % [stars, budget_per_enemy, result.size()])
 	for e in result:
-		print("  - %s (threat %.1f)" % [e.name, e.get_threat()])
+		var display_name = e.name
+		if name_counts[e.name] > 1:
+			name_index[e.name] = name_index.get(e.name, 0) + 1
+			display_name = "%s %d" % [e.name, name_index[e.name]]
+		print("  - %s (threat %.1f)" % [display_name, e.get_threat()])
+
 	return result

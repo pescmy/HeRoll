@@ -44,10 +44,11 @@ func apply_item(item: Item) -> void:
 	speed += item.speed_bonus
 
 # --- Combat helpers ---
-func take_damage(amount: int) -> void:
-	var damage = max(amount - defense, 1) # at least 1 dmg
+func take_damage(amount: int) -> int:
+	var damage = max(amount - defense, 1)
 	current_health = max(current_health - damage, 0)
-	print("Player takes %d damage! HP: %d/%d" % [damage, current_health, max_health])
+	print("🛡️ Player absorbed %d, took %d damage! HP: %d/%d" % [amount - damage, damage, current_health, max_health])
+	return damage
 
 func heal(amount: int) -> void:
 	current_health = min(current_health + amount, max_health)

@@ -4,6 +4,7 @@ class_name Enemy
 @export var data: EnemyData
 @onready var stats: EnemyStats = $EnemyStats
 @onready var sprite: Sprite2D = $Sprite2D
+var display_name: String = ""
 
 func _ready():
 	# If the scene's exported data is set in inspector, apply it.
@@ -11,7 +12,7 @@ func _ready():
 		_apply_data()
 
 func _apply_data():
-	name = data.name if data.name != "" else name
+	name = data.name if data.name != "" else String(name)
 	if stats:
 		stats.setup(data)
 	if data.sprite:
@@ -20,9 +21,10 @@ func _apply_data():
 	# var tex = preload(data.sprite_path)  # or load at runtime; be careful with timings
 
 # wrapper API used by BattleController:
-func take_damage(amount: int):
+func take_damage(amount: int) -> int:
 	if stats:
-		stats.take_damage(amount)
+		return stats.take_damage(amount)
+	return 0
 
 func is_dead() -> bool:
 	return stats and stats.is_dead()

@@ -19,9 +19,8 @@ func _on_equipment_changed() -> void:
 # Combat API (BattleController calls these)
 # =======================
 
-func take_damage(amount: int) -> void:
-	# Damage calculation automatically accounts for equipment via stats
-	stats.take_damage(amount)
+func take_damage(amount: int) -> int:
+	return stats.take_damage(amount)
 
 func heal(amount: int) -> void:
 	stats.heal(amount)
