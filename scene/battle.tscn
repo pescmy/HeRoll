@@ -10,12 +10,11 @@
 position = Vector2(-2, 3)
 player = NodePath("../Player")
 
-[node name="BattleUI" type="Node2D" parent="." node_paths=PackedStringArray("battle_controller", "player", "player_health_bar", "enemy_health_bar", "attack_button")]
+[node name="BattleUI" type="Node2D" parent="." node_paths=PackedStringArray("battle_controller", "player", "player_health_bar", "attack_button")]
 script = ExtResource("2_soyo5")
 battle_controller = NodePath("../BattleController")
 player = NodePath("../Player")
 player_health_bar = NodePath("../PlayerHealthBar")
-enemy_health_bar = NodePath("../EnemyHealthBar")
 attack_button = NodePath("../AttackButton")
 
 [node name="Player" parent="." instance=ExtResource("3_q27o7")]
@@ -32,10 +31,4 @@ text = "Attack"
 offset_left = 260.0
 offset_top = 260.0
 offset_right = 360.0
-offset_bottom = 287.0
-
-[node name="EnemyHealthBar" type="ProgressBar" parent="."]
-offset_left = 460.0
-offset_top = 260.0
-offset_right = 560.0
 offset_bottom = 287.0

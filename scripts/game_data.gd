@@ -24,6 +24,11 @@ signal loop_changed(new_count: int)
 func _ready() -> void:
 	init_inventory()
 	SaveManager.load_save()
+	inventory_size = 10 + TownData.get_upgrade_bonus("town_vault_storage")
+	# DEBUG
+	if inventory[0].is_empty():
+		_debug_fill_inventory()
+		inventory_changed.emit()
 	if not board_generated:
 		generate_board()
 		board_generated = true

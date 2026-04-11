@@ -17,14 +17,49 @@ var buildings: Dictionary = {
 }
 
 var upgrades: Dictionary = {
-	"max_health": 0,
-	"strength": 0,
-	"defense": 0,
-	"speed": 0
+	"blacksmith_strength": 0,
+	"armoury_defense": 0,
+	"jeweller_speed": 0,
+	"apothecary_health": 0,
+	"training_grounds_speed": 0,
+	"town_vault_storage": 0
+}
+
+const MAX_UPGRADE_LEVEL = 5
+const UPGRADE_BASE_COST = 10
+
+# Which upgrade key belongs to which building
+const BUILDING_UPGRADES = {
+	"blacksmith": "blacksmith_strength",
+	"armoury": "armoury_defense",
+	"jeweller": "jeweller_speed",
+	"apothecary": "apothecary_health",
+	"training_grounds": "training_grounds_speed",
+	"town_vault": "town_vault_storage"
+}
+
+# What each upgrade gives per level
+const UPGRADE_STAT = {
+	"blacksmith_strength": "strength",
+	"armoury_defense": "defense",
+	"jeweller_speed": "speed",
+	"apothecary_health": "health",
+	"training_grounds_speed": "speed",
+	"town_vault_storage": "storage"
+}
+
+const UPGRADE_VALUE_PER_LEVEL = {
+	"blacksmith_strength": 2,
+	"armoury_defense": 2,
+	"jeweller_speed": 1,
+	"apothecary_health": 10,
+	"training_grounds_speed": 1,
+	"town_vault_storage": 2
 }
 
 signal town_storage_changed
 signal building_constructed(building_name: String)
+signal upgrade_purchased(upgrade_key: String)
 
 func add_to_storage(resource_name: String, amount: int) -> void:
 	if town_storage.has(resource_name):
@@ -55,16 +90,32 @@ func construct_building(building_name: String, cost: Dictionary) -> bool:
 	print("✅ Built %s!" % building_name)
 	return true
 
-func get_upgrade_cost(upgrade_name: String) -> int:
-	return (upgrades[upgrade_name] + 1) * 10
+func get_upgrade_level(building_name: String) -> int:
+	var key = BUILDING_UPGRADES[building_name]
+	return upgrades.get(key, 0)
 
-func purchase_upgrade(upgrade_name: String) -> bool:
-	var cost = get_upgrade_cost(upgrade_name)
+func get_upgrade_cost(building_name: String) -> int:
+	var level = get_upgrade_level(building_name)
+	if level >= MAX_UPGRADE_LEVEL:
+		return -1
+	return int(UPGRADE_BASE_COST * pow(3, level))
+
+func purchase_upgrade(building_name: String) -> bool:
+	var key = BUILDING_UPGRADES[building_name]
+	var level = upgrades.get(key, 0)
+	if level >= MAX_UPGRADE_LEVEL:
+		print("❌ Max level reached!")
+		return false
+	var cost = get_upgrade_cost(building_name)
 	if town_storage["gold"] < cost:
 		print("❌ Not enough gold!")
 		return false
 	town_storage["gold"] -= cost
-	upgrades[upgrade_name] += 1
+	upgrades[key] += 1
 	town_storage_changed.emit()
-	print("✅ Upgraded %s to level %d!" % [upgrade_name, upgrades[upgrade_name]])
+	upgrade_purchased.emit(key)
+	print("✅ Upgraded %s to level %d!" % [building_name, upgrades[key]])
 	return true
+
+func get_upgrade_bonus(upgrade_key: String) -> int:
+	return upgrades.get(upgrade_key, 0) * UPGRADE_VALUE_PER_LEVEL.get(upgrade_key, 0)

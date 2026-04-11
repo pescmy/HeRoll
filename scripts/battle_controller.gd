@@ -18,21 +18,31 @@ signal target_changed(enemy: Node)
 func _ready():
 	call_deferred("start_battle")
 
+func _process(_delta: float) -> void:
+	if in_battle and Input.is_action_just_pressed("attack"):
+		player_attack()
+
 func start_battle():
 	if in_battle:
 		return
 	in_battle = true
 
-	for i in range(GameData.current_enemy_data.size()):
+	var enemy_count = GameData.current_enemy_data.size()
+	var viewport_width = 1152
+	var enemy_area_start = 550
+	var enemy_area_width = 500
+	var spacing = enemy_area_width / (enemy_count + 1)
+
+	for i in range(enemy_count):
 		var enemy = load("res://scene/enemy.tscn").instantiate()
 		enemy.data = GameData.current_enemy_data[i]
 		add_child(enemy)
-		enemy.position = Vector2(902 + (i * 120), 350)
+		enemy.position = Vector2(enemy_area_start + spacing * (i + 1), 350)
 		enemies.append(enemy)
 
 	current_target = enemies[0]
-	emit_signal("battle_started")
-	emit_signal("target_changed", current_target)
+	battle_started.emit()
+	target_changed.emit(current_target)
 	print("Battle started with %d enemies" % enemies.size())
 
 func player_attack():

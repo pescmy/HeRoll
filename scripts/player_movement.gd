@@ -140,8 +140,34 @@ func _on_resource_landed() -> void:
 	var success = GameData.add_to_inventory(type, "resource", amount, icons[type])
 	if success:
 		print("💎 Gained %d %s!" % [amount, type])
+		_spawn_floating_text("+%d %s" % [amount, type])
 	else:
+		_spawn_floating_text("Inventory full!")
 		print("❌ Couldn't pick up %s — inventory full!" % type)
+
+func _spawn_floating_text(text: String) -> void:
+	var floating_text = preload("res://scene/floating_text.tscn").instantiate()
+	floating_text.text = text
+	
+	# Determine offset based on board position
+	var offset = Vector2(-30, -40) # default top/bottom
+	var total_tiles = get_total_tiles()
+	var top_row = grid_size # 0 to grid_size-1
+	var right_col = grid_size + grid_size - 1 # right column tiles
+	var bottom_row = right_col + grid_size - 1 # bottom row tiles
+	
+	if player_index >= grid_size and player_index < grid_size + grid_size - 1:
+		# Right side — float to the right
+		offset = Vector2(40, -30)
+	elif player_index >= grid_size + grid_size - 1 and player_index < total_tiles - (grid_size - 2):
+		# Bottom row — float downward
+		offset = Vector2(-30, 40)
+	elif player_index >= total_tiles - (grid_size - 2):
+		# Left side — float to the left
+		offset = Vector2(-80, -30)
+	
+	floating_text.position = position + offset
+	get_parent().add_child(floating_text)
 
 func _pick_enemy(stars: int) -> Array[EnemyData]:
 	var enemy_pool = [
