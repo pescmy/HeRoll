@@ -55,6 +55,9 @@ func start_battle():
 		add_child(enemy)
 		enemy.position = Vector2(enemy_area_start + spacing * (i + 1), 350)
 		enemies.append(enemy)
+		
+		enemy.clicked.connect(_on_enemy_clicked)
+		
 		print("📊 %s stats: HP %d/%d, Str %d, Def %d, Spd %d" % [
 			enemy.display_name,
 			enemy.stats.current_health,
@@ -68,6 +71,13 @@ func start_battle():
 	battle_started.emit()
 	target_changed.emit(current_target)
 	print("Battle started with %d enemies" % enemies.size())
+
+func _on_enemy_clicked(enemy: Node) -> void:
+	if not in_battle:
+		return
+	current_target = enemy
+	target_changed.emit(current_target)
+	print("🎯 Target changed to: %s" % current_target.display_name)
 
 func player_attack() -> void:
 	if not in_battle or current_target == null:

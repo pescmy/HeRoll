@@ -7,8 +7,21 @@ class_name StartTileUI
 signal choice_made
 
 func _ready() -> void:
+	set_process_unhandled_input(true)
 	hide()
 	$Panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+func _unhandled_input(event: InputEvent) -> void:
+	if not event is InputEventKey or not event.pressed:
+		return
+	if not visible:
+		return
+	if Input.is_action_just_pressed("extract"):
+		_on_extract_pressed()
+	elif Input.is_action_just_pressed("heal"):
+		_on_heal_pressed()
+	elif Input.is_action_just_pressed("gold"):
+		_on_gold_pressed()
 
 func show_choices() -> void:
 	self.show()

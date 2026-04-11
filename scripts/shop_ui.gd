@@ -36,6 +36,7 @@ var shop_item: Item = null
 @onready var leave_button: Button = $Panel/MarginContainer/VBoxContainer/LeaveButton
 
 func _ready() -> void:
+	set_process_unhandled_input(true)
 	var style = StyleBoxFlat.new()
 	style.bg_color = Color(0.15, 0.15, 0.15, 1.0)
 	style.border_width_left = 2
@@ -52,6 +53,17 @@ func _ready() -> void:
 	
 	leave_button.pressed.connect(_on_leave_pressed)
 	hide()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if not event is InputEventKey or not event.pressed:
+		return
+	if Input.is_action_just_pressed("inventory"):
+		if visible:
+			hide()
+			owner.find_child("RollButton").disabled = false
+		else:
+			show()
+			owner.find_child("RollButton").disabled = true
 
 func open_shop() -> void:
 	shop_item = _generate_item()

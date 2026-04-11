@@ -11,6 +11,9 @@ var enemy_health_bars: Array = []
 var turn_order_label: Label = null
 var player_stats_label: Label = null
 
+var target_arrow: Label = null
+var current_tinted_enemy = null
+
 func _ready():
 	set_process_unhandled_input(true)
 	setup_layout()
@@ -21,6 +24,13 @@ func _ready():
 	battle_controller.enemy_died.connect(_on_enemy_died)
 	battle_controller.target_changed.connect(_on_target_changed)
 	attack_button.pressed.connect(_on_attack_pressed)
+	
+	# Create target arrow
+	target_arrow = Label.new()
+	target_arrow.text = "▼"
+	target_arrow.add_theme_color_override("font_color", Color.YELLOW)
+	target_arrow.add_theme_font_size_override("font_size", 24)
+	get_parent().call_deferred("add_child", target_arrow)
 
 func setup_layout() -> void:
 	player.position = Vector2(200, 350)
@@ -62,6 +72,7 @@ func _on_battle_started():
 	update_player_health_bar()
 	_update_player_stats_label()
 	_update_turn_order_label()
+	_update_target_visuals()
 	attack_button.disabled = false
 
 func _create_enemy_health_bars() -> void:
@@ -170,6 +181,7 @@ func _on_enemy_died(enemy: Node) -> void:
 func _on_target_changed(_enemy: Node):
 	update_enemy_health_bars()
 	_update_turn_order_label()
+	_update_target_visuals()
 
 func update_player_health_bar() -> void:
 	player_health_bar.max_value = player.get_max_health()
@@ -226,3 +238,38 @@ func _unhandled_input(event: InputEvent) -> void:
 	if battle_controller.in_battle:
 		if Input.is_action_just_pressed("attack"):
 			battle_controller.player_attack()
+		elif Input.is_action_just_pressed("ui_focus_next"): # Tab key
+			_cycle_target()
+
+func _cycle_target() -> void:
+	var living = battle_controller.get_living_enemies()
+	if living.is_empty():
+		return
+	if battle_controller.current_target == null:
+		battle_controller.current_target = living[0]
+	else:
+		var idx = living.find(battle_controller.current_target)
+		var next_idx = (idx + 1) % living.size()
+		battle_controller.current_target = living[next_idx]
+	battle_controller.target_changed.emit(battle_controller.current_target)
+	_update_target_visuals()
+
+func _update_target_visuals() -> void:
+	# Remove tint from previous target
+	if current_tinted_enemy and is_instance_valid(current_tinted_enemy):
+		current_tinted_enemy.get_node("Sprite2D").modulate = Color.WHITE
+	
+	var target = battle_controller.current_target
+	if target == null or not is_instance_valid(target):
+		if target_arrow:
+			target_arrow.visible = false
+		return
+	
+	# Tint new target
+	target.get_node("Sprite2D").modulate = Color(1.5, 0.5, 0.5)
+	current_tinted_enemy = target
+	
+	# Move arrow above target
+	if target_arrow:
+		target_arrow.position = target.position + Vector2(-8, -120)
+		target_arrow.visible = true
