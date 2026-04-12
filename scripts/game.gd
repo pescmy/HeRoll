@@ -4,6 +4,7 @@ extends Node2D
 @onready var player: Node2D = $Player
 @onready var dice = $DiceContainer
 @onready var board = $GameBoard
+@onready var combat_reward_ui: CombatRewardUI = $CombatRewardUI
 
 var board_generated: bool = false
 

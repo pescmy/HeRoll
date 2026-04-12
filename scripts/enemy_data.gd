@@ -9,6 +9,7 @@ class_name EnemyData
 @export var sprite: Texture2D
 @export var reward_gold: int
 @export var reward_xp: int
+@export var drop_chance: float = 0.2
 
 func get_threat() -> float:
 	return (max_health / 20.0) + (strength * 0.5) + (defense * 0.3) + (speed * 0.2)

@@ -18,6 +18,9 @@ var inventory_size: int = 10
 var loop_count: int = 0
 var last_lost_resources: Array = []
 
+var last_battle_stars: int = 0
+var last_defeated_enemies: Array[EnemyData] = []
+
 signal inventory_changed
 signal loop_changed(new_count: int)
 

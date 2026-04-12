@@ -8,6 +8,9 @@ var enemies: Array = []
 var current_target: Node = null
 var in_battle: bool = false
 
+var defeated_enemies: Array[EnemyData] = []
+var battle_stars: int = 0
+
 signal battle_started
 signal battle_ended(victory: bool)
 signal player_attacked(damage: int, blocked: int)
@@ -113,6 +116,10 @@ func player_attack() -> void:
 func _execute_player_attack() -> void:
 	if current_target == null or not is_instance_valid(current_target):
 		return
+	
+	if current_target.is_dead():
+		defeated_enemies.append(current_target.data)
+	
 	var raw = player.get_attack_damage()
 	var actual = current_target.take_damage(raw)
 	var blocked = raw - actual
@@ -163,6 +170,8 @@ func end_battle(victory: bool) -> void:
 	await get_tree().create_timer(1.5).timeout
 	
 	if victory:
+		GameData.last_defeated_enemies = defeated_enemies
+		SaveManager.save()
 		get_tree().change_scene_to_file("res://scene/game.tscn")
 	else:
 		GameData.reset_run()

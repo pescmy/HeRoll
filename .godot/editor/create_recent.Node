@@ -1,11 +1,11 @@
-Label
+Panel
 Button
 VBoxContainer
+Label
+MarginContainer
+CanvasLayer
 PanelContainer
 TileMapLayer
-CanvasLayer
-MarginContainer
-Panel
 Node2D
 TextureRect
 GridContainer

@@ -1,0 +1,2 @@
+change combat to be a state machine
+agility based logic for battle

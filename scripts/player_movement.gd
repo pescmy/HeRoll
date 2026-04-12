@@ -111,6 +111,7 @@ func _on_landed(index: int) -> void:
 	GameData.player_tile_index = index
 	var tile = GameData.tile_types.get(index, {"type": "safe", "stars": 0})
 	var type = tile["type"]
+	GameData.last_battle_stars = tile["stars"]
 	print("Landed on %s tile (stars: %d)" % [type, tile["stars"]])
 	
 	match type:

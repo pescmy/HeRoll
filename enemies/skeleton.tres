@@ -13,4 +13,5 @@ speed = 10
 sprite = ExtResource("2_a3isk")
 reward_gold = 7
 reward_xp = 12
+drop_chance = 0.4
 metadata/_custom_type_script = "uid://bp4bb0bp1mktu"
