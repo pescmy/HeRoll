@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cobfnkt70i4h1"]
+[gd_scene load_steps=3 format=3 uid="uid://kolo6vhbxllk"]
 
-[ext_resource type="Script" uid="uid://bu4ryhkem2ox6" path="res://scripts/combat_reward_ui.gd" id="1_2bo3e"]
+[ext_resource type="Script" uid="uid://bgsxu7bjw24ke" path="res://scripts/combat_reward_ui.gd" id="1_2bo3e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2bo3e"]
 
@@ -13,31 +13,48 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 150.0
+offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_2bo3e")
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel"]
-offset_right = 79.0
-offset_bottom = 89.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.5
+offset_top = -44.5
+offset_right = 39.5
+offset_bottom = 44.5
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
 layout_mode = 2
 
 [node name="Title" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Victory!"
 
 [node name="GoldLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+text = "Gold"
 
 [node name="ItemsContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="ContinueButton" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Continue"

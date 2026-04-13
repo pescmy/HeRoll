@@ -116,10 +116,6 @@ func player_attack() -> void:
 func _execute_player_attack() -> void:
 	if current_target == null or not is_instance_valid(current_target):
 		return
-	
-	if current_target.is_dead():
-		defeated_enemies.append(current_target.data)
-	
 	var raw = player.get_attack_damage()
 	var actual = current_target.take_damage(raw)
 	var blocked = raw - actual
@@ -128,6 +124,7 @@ func _execute_player_attack() -> void:
 
 	if current_target.is_dead():
 		print("💀 %s has been defeated!" % current_target.display_name)
+		defeated_enemies.append(current_target.data)
 		enemy_died.emit(current_target)
 		enemies.erase(current_target)
 		current_target.queue_free()
@@ -177,3 +174,6 @@ func end_battle(victory: bool) -> void:
 		GameData.reset_run()
 		SaveManager.save()
 		get_tree().change_scene_to_file("res://scene/death_screen.tscn")
+	
+
+	

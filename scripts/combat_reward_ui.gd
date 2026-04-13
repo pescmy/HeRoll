@@ -9,12 +9,8 @@ var gold_reward: int = 0
 var dropped_items: Array[Item] = []
 var selected_item: Item = null
 
-@onready var gold_label: Label = $Panel/MarginContainer/VBoxContainer/GoldLabel
-@onready var items_container: VBoxContainer = $Panel/MarginContainer/VBoxContainer/ItemsContainer
-@onready var continue_button: Button = $Panel/MarginContainer/VBoxContainer/ContinueButton
-
 func _ready() -> void:
-	continue_button.pressed.connect(_on_continue_pressed)
+	find_child("ContinueButton").pressed.connect(_on_continue_pressed)
 	hide()
 
 func show_rewards() -> void:
@@ -24,9 +20,9 @@ func show_rewards() -> void:
 	gold_reward = reward_calc.calculate_gold(GameData.last_defeated_enemies, GameData.last_battle_stars)
 	dropped_items = reward_calc.roll_drops(GameData.last_defeated_enemies)
 	
-	gold_label.text = "Gold earned: %d" % gold_reward
+	find_child("GoldLabel").text = "Gold earned: %d" % gold_reward
 	
-	# Clear previous items
+	var items_container = find_child("ItemsContainer")
 	for child in items_container.get_children():
 		child.queue_free()
 	
@@ -55,10 +51,10 @@ func show_rewards() -> void:
 
 func _on_take_item_pressed(item: Item, button: Button) -> void:
 	selected_item = item
-	# Disable all other take buttons
+	var items_container = find_child("ItemsContainer")
 	for child in items_container.get_children():
 		if child is HBoxContainer:
-			var btn = child.get_node_or_null("Button") 
+			var btn = child.get_node_or_null("Button")
 			if btn and btn != button:
 				btn.disabled = true
 	button.text = "✓ Taken"
@@ -66,16 +62,13 @@ func _on_take_item_pressed(item: Item, button: Button) -> void:
 	print("🎁 Selected item: %s" % item.name)
 
 func _on_continue_pressed() -> void:
-	# Add gold to inventory
 	GameData.add_to_inventory("gold", "resource", gold_reward, "res://art/resources/coins.png")
 	print("💰 Gained %d gold from combat!" % gold_reward)
 	
-	# Add selected item if any
 	if selected_item != null:
 		GameData.add_to_inventory(selected_item.name, selected_item.type, 1, "res://art/resources/coins.png")
 		print("🎁 Added %s to inventory!" % selected_item.name)
 	
-	# Clear reward data
 	GameData.last_defeated_enemies.clear()
 	GameData.last_battle_stars = 0
 	selected_item = null

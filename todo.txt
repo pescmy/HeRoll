@@ -1,2 +1,3 @@
 change combat to be a state machine
-agility based logic for battle
+
+bug, player can take all items rather than only selecting 1 item

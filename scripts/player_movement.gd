@@ -116,8 +116,9 @@ func _on_landed(index: int) -> void:
 	
 	match type:
 		"combat":
+			GameData.last_battle_stars = tile["stars"]
 			GameData.player_current_health = get_parent().get_node("PlayerStats").current_health
-			print("💾 Saving health: %d" % GameData.player_current_health)
+			# ... rest of existing code
 			GameData.player_tile_index = player_index
 			GameData.current_enemy_data = _pick_enemy(tile["stars"])
 			get_tree().change_scene_to_file("res://scene/battle.tscn")
